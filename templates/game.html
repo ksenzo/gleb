@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<add name="X-Frame-Options" value="SAMEORIGIN" />-->
     <title>Game</title>
+    <link href="http://fonts.cdnfonts.com/css/machine-gunk" rel="stylesheet">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
     <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>-->
@@ -17,8 +18,15 @@
         color: var(--tg-theme-text-color);
         background: var(--tg-theme-bg-color);
     }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
     .header{
-        padding-bottom: 5px;
+        height: 22px;
+        background: #001251;
     }
     .select_chests {
         display: flex;
@@ -250,12 +258,152 @@
         color:red;
         font-weight: bold;
     }
+
+    @import url('http://fonts.cdnfonts.com/css/machine-gunk');
+
+    .balance {
+        position: relative;
+        margin: 0px 8px 0px 26px;
+        background: #141A2F;
+        max-width: 152px;
+        padding: 4px 8px 2px 23px;
+        border-radius: 12px;
+    }
+
+    .header__wrap {
+        transform: translateY(8px);
+        display: flex;
+        align-items: center;
+    }
+
+    .coin_img {
+        position: absolute;
+        left: -9px;
+        top: -1px;
+    }
+
+    .bonus_img {
+        position: absolute;
+        z-index: 5;
+    }
+
+    .bonus_counter {
+        position: relative;
+        width: 144px;
+        background: #141A2F;
+        border-radius: 12px;
+        margin-right: 8px;
+    }
+
+    .bonus_progress {
+        background: #0073e7;
+        position: absolute;
+        width: 50%;
+        height: 24px;
+        left: 0;
+        top: 0;
+        border-radius: 12px;
+    }
+
+    .bonus_row {
+        position: relative;
+        height: 24px;
+    }
+
+    .bonus_row::after {
+        position: absolute;
+        left: 20%;
+        top: -5px;
+        content: "бонусная erhareh";
+        font-family: 'Machine Gunk', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 8px;
+        line-height: 10px;
+        letter-spacing: 0.08em;
+        background: linear-gradient(180deg, #FFFFFF 49.39%, #FFFF32 84%), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        border: 0.5px solid #ED600A;
+        text-shadow: -1px 1px 2px rgba(237, 96, 10, 0.8);
+    }
+
+    .money_balance {
+        font-family: 'Machine Gunk', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        text-align: right;
+        line-height: 16px;
+        letter-spacing: 0.04em;
+        margin-left: 5px;
+        background: linear-gradient(181.99deg, #FFFFFF 50.21%, #AEFFFC 83.33%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+    }
+
+    .numbers_bonus {
+        position: absolute;
+        right: 37%;
+        top: 5px;
+        z-index: 6;
+        font-family: 'Machine Gunk';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        letter-spacing: 0.04em;
+        background: linear-gradient(181.99deg, #FFFFFF 50.21%, #AEFFFC 83.33%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        text-align: center;
+    }
+
+    .bonus_img2 {
+        left: 0;
+        top: -7px;
+        position: absolute;
+        z-index: 7;
+    }
+
+    .settings {
+        border-radius: 12px;
+        background: #141A2F;
+        padding: 3px 3px 0px 4px;
+    }
 </style>
 
 <body>
 <div class="header">
-    <div class="balance" id="balance">Баланс: </div>
-    <div class="bonus_counter" id="bonus_counter"></div>
+    <div class="header__wrap">
+        <span class="balance">
+            <div class="coin_img">
+                <img src="{% static 'img/money.svg' %}">
+            </div>
+            <span class="money_balance" id="balance">9,991,999 uah</span>
+        </span>
+        <div class="bonus_counter" id="bonus_counter">
+            <div class="bonus_img">
+                <img src="{% static 'img/bonus.svg' %}">
+            </div>
+            <div class="bonus_img2">
+                <img src="{% static 'img/bonus2.svg' %}">
+            </div>
+            <div class="bonus_row">
+                <div class="bonus_progress"></div>
+            </div>
+            <span class="numbers_bonus" style="z-index: 5">11/12</span>
+        </div>
+        <div class="settings" id="settings">
+            <img src="{% static 'img/settings.svg' %}">
+        </div>
+    </div>
 </div>
 <div id="game_to_start" class="game_to_start">
     <div id="select_chests" class="select_chests">
