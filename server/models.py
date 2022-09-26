@@ -32,7 +32,7 @@ class Wallet(models.Model):
     ]
     owner = models.ForeignKey(User, on_delete=models.CASCADE, primary_key=True)
     balance = models.IntegerField(default=0)
-    currency = models.CharField(max_length=4, choices=CURRENCY_CHOICES)
+    currency = models.CharField(max_length=4, choices=CURRENCY_CHOICES, default='RUB')
 
 
 class DemoWallet(models.Model):
@@ -65,7 +65,7 @@ class BonusGame(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     amount = models.FloatField()
     winning = models.BooleanField(default=False)
-    winning_amount = models.IntegerField()
+    winning_amount = models.IntegerField(null=True)
     choice = models.CharField(max_length=6, choices=GAME_CHOICES)
     demo_game = models.BooleanField(default=False)
 
@@ -98,18 +98,21 @@ class Game(models.Model):
     #                 self.winning = True
 
     def start_game(self):
+        wallet = Wallet.objects.get(owner=self.user)
+        wallet.balance -= self.amount
+        wallet.save()
+        if self.user.new_game_count == 3:
+            self.user.new_user = False
         if self.user.new_user:
             self.user.new_game_count += 1
-            if self.user.new_game_count == 3:
-                self.user.new_user = False
             if self.amount <= 100:
-                if self.user.game_set <= 3:
+                if self.user.new_game_count <= 3:
                     self.winning = True
             elif 100 < self.amount < 200:
-                if self.user.game_set <= 2:
+                if self.user.new_game_count <= 2:
                     self.winning = True
             elif self.amount >= 200:
-                if self.user.game_set <= 1:
+                if self.user.new_game_count <= 1:
                     self.winning = True
         else:
             if self.amount <= 100:
@@ -124,9 +127,11 @@ class Game(models.Model):
         else:
             pass
         self.user.bonus_game_count += 1
-        if self.user.bonus_game_count == 20:
+        if self.user.bonus_game_count == 21:
             bonus_game(self.user)
             self.user.bonus_game_count = 0
+        self.user.save()
+        self.save()
 
 
     # def win_or_lose(self):
@@ -150,16 +155,30 @@ def bonus_game(user):
     game = BonusGame.objects.create(user=user, amount=average_amount)
     if randomizer(4):
         game.winning_amount = round(average_amount * 10)
+        chest_2 = round(average_amount * 0.5)
+        chest_3 = round(average_amount)
     elif randomizer(24):
         game.winning_amount = round(average_amount)
+        chest_2 = round(average_amount * 0.5)
+        chest_3 = round(average_amount * 10)
     else:
         game.winning_amount = round(average_amount * 0.5)
+        chest_2 = round(average_amount * 10)
+        chest_3 = round(average_amount)
     game.save()
+
+    user = user
+    user.bonus_game_count = 0
+    user.save()
+
+    wallet = Wallet.objects.get(owner=user)
+    wallet.balance += game.winning_amount
+    wallet.save()
     # chest_1 = round(average_amount * 0.5)
     # chest_2 = round(average_amount)
     # chest_3 = round(average_amount * 10)
 
-    return game.winning_amount
+    return game.winning_amount, chest_2, chest_3
 
 
 def get_all_game_results():
@@ -177,7 +196,8 @@ def get_all_game_results():
 
 
 def change_roi_of_game():
-    casino_roi = get_all_game_results()
+    # casino_roi = get_all_game_results()
+    casino_roi = 40
     if casino_roi >= 40:
         winning_chance = 1
     elif 36 <= casino_roi < 40:

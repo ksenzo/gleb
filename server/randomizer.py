@@ -21,18 +21,18 @@ def randomizer(winning_percent):
 
     x = winning_range_start + int(count_winning_combinations)
     if x < random_int:
-        winning_combinations = range(winning_range_start, x)
+        winning_combinations = range(winning_range_start, x + 1)
         if players_number in winning_combinations:
             return True
         else:
             return False
     else:
         winning_combinations_1 = range(winning_range_start, random_int + 1)
-        len_of_second_part = int(count_winning_combinations) - len(winning_combinations_1)
-        winning_combinations_2 = range(1, len_of_second_part + 1)
         if players_number in winning_combinations_1:
             return True
-        elif players_number in winning_combinations_2:
+        len_of_second_part = int(count_winning_combinations) - len(winning_combinations_1)
+        winning_combinations_2 = range(1, len_of_second_part + 1)
+        if players_number in winning_combinations_2:
             return True
         else:
             return False
