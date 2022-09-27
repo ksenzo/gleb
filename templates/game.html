@@ -30,11 +30,11 @@
     }
     .select_chests {
         display: flex;
-        /*flex-wrap: wrap;*/
-        align-items: stretch;
+        height: 295px;
         flex-direction: row;
-        background-image: url("/static/img/background.jpg");
+        background-image: url("/static/img/light.gif");
         background-position: center;
+        background-size: cover;
     }
     .game_result{
         position: absolute;
@@ -60,25 +60,23 @@
         position: relative;
         text-align: center;
     }
-    .chose_bet_size{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-star;
-        flex-direction: column;
-    }
+
     .bet_amount_selector{
         display: flex;
         flex-wrap: wrap;
         /*align-items: flex-star;*/
         /*flex-direction: row;*/
-        justify-content: space-betwen;
+        justify-content: center;
+        margin-bottom: 8px;
+        transform: translateY(-87px);
     }
     .popular_bet_amount{
         display: flex;
         justify-content: space-betwen;
+        transform: translateY(-87px);
     }
     .double_start{
-        display: flex;
+        transform: translateY(-75px);
     }
     .button_start_game, .button_new_game{
         display: inline-block;
@@ -101,52 +99,53 @@
         transform: translateY(4px);
     }
     .button_double_bet{
-        display: inline-block;
-        padding: 10px 15px;
-        font-size: 18px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        outline: none;
-        color: #fff;
-        background-color: #F88379;
+        background-image: url('/static/img/make_bet.svg');
+        background-repeat: no-repeat;
+        background-color: #FFFFFF00;
         border: none;
-        border-radius: 15px;
-        box-shadow: 0 9px #999;
+        background-size: cover;
+        width: 266.39px;
+        height: 72.13px;
     }
-    .button_double_bet:hover{background-color: #EE4B2B}
-    .button_double_bet:active{
-        background-color: #EE4B2B;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
+
     .button_minus{
-        font-size: 35px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        cursor: pointer;
-        color: #fff;
-        background-color: #F88379;
+        background-image: url('/static/img/minus.svg');
+        background-repeat: no-repeat;
+        background-color: #ffffff00;
+        width: 58px;
+        border: none;
+        margin-right: 6px;
     }
-    .button_minus:hover{background-color: #EE4B2B}
-    .button_minus:active{background-color: #EE4B2B}
+
     .button_plus{
-        font-size: 35px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
-        cursor: pointer;
-        color: #fff;
-        background-color: #44E083;
+        background-image: url('/static/img/plus.svg');
+        background-repeat: no-repeat;
+        background-color: #ffffff00;
+        width: 58px;
+        border: none;
+        margin-left: 6px;
     }
     .button_plus:hover{background-color: #00FF00}
     .button_plus:active{background-color: #00FF00}
     .input_bet_amount{
-        width: 50%;
         font-size: 25px;
         border-radius: 25px;
-        padding-left: 20px;
+        width: 210px;
+        background: #76300C;
+        border-radius: 16px;
+        font-family: 'Machine Gunk';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 30px;
+        background: linear-gradient(180deg, #FFFFFF 49.39%, #FFFF32 84%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        border: none;
+        height: 100%;
+        text-align: center;
     }
     .input_bet_amount::-webkit-outer-spin-button,
     .input_bet_amount::-webkit-inner-spin-button {
@@ -157,8 +156,15 @@
         font-size: 20px;
         border-radius: 10px;
         cursor: pointer;
+        height: 36px;
+        -webkit-text-stroke: .5px #ff5400;
         color: #fff;
         background-color: #FFD700;
+        background-image: url('/static/img/btn_back.png');
+        background-repeat: no-repeat;
+        width: 82px;
+        background-color: #ffffff00;
+        border: none;
     }
     .button_bet_size:hover{
 
@@ -312,10 +318,10 @@
 
     .bonus_row::after {
         position: absolute;
-        left: 20%;
-        top: -5px;
-        content: "бонусная erhareh";
-        font-family: 'Machine Gunk', sans-serif;
+        left: 47px;
+        top: -7px;
+        content: "бонусная игра";
+        font-family: 'Machine [Rus by me]';
         font-style: normal;
         font-weight: 500;
         font-size: 8px;
@@ -326,7 +332,6 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
         text-fill-color: transparent;
-        border: 0.5px solid #ED600A;
         text-shadow: -1px 1px 2px rgba(237, 96, 10, 0.8);
     }
 
@@ -365,6 +370,35 @@
         text-align: center;
     }
 
+    .chose_bet_size {
+        background-image: url("/static/img/main-img.png");
+        background-size: cover;
+        padding-top: 175px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-repeat: no-repeat;
+        transform: translateY(-41px);
+    }
+
+    .main__title {
+        font-family: 'Machine [Rus by me]';
+        position: absolute;
+        top: 11px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 31px;
+        letter-spacing: 0.08em;
+        background: linear-gradient(180deg, #FFE926 0%, #E0610B 100%);
+        -webkit-background-clip: text;
+        text-fill-color: transparent;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(-1px 1px 2px #691002);
+        -webkit-text-stroke: 1px #953f04;
+    }
+
     .bonus_img2 {
         left: 0;
         top: -7px;
@@ -377,6 +411,75 @@
         background: #141A2F;
         padding: 3px 3px 0px 4px;
     }
+
+    .btn_start_game {
+        background-image: url(/static/img/play.png);
+        width: 115px;
+        background-repeat: no-repeat;
+        border-radius: 50%;
+        height: 108px;
+        border: none;
+        background-color: #ffe4c400;
+    }
+
+    .start_game {
+        transform: translateY(-100px);
+    }
+
+    .btn_text {
+        font-family: 'Machine [Rus by me]';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 31px;
+        letter-spacing: 0.08em;
+        background: linear-gradient(180deg, #FFFFFF 49.39%, #FFFF32 84%), linear-gradient(180deg, #FFFFFF 0%, #AEFFFC 100%), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -1px 1px 20px #FFFF32;
+    }
+
+    .label_bet_amount {
+        width: 210px;
+        background: #76300C;
+        border-radius: 16px;
+        height: 35px;
+    }
+
+    .btn_bet_text {
+        font-family: 'Machine Gunk';
+        font-style: normal;
+        display: block;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        letter-spacing: 0.08em;
+        background: linear-gradient(180deg, #FFFFFF 49.39%, #FFFF32 84%), linear-gradient(180deg, #FFFFFF 0%, #AEFFFC 100%), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        padding: 3px;
+        text-shadow: -1px 1px 2px rgba(215, 108, 45, 0.6);
+    }
+
+    .btn_double_text {
+        font-family: 'Machine [Rus by me]';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 31px;
+        letter-spacing: 0.08em;
+        background: linear-gradient(180deg, #FFFFFF 49.39%, #FFFF32 84%), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+        filter: drop-shadow(-1px 1px 2px #ED600ACC);
+        -webkit-text-stroke: 1px #ff5400;
+    }
+
 </style>
 
 <body>
@@ -417,26 +520,29 @@
         </div>
     </div>
     <div id="chose_bet_size" class="chose_bet_size">
-        <p>Выберите размер ставки:</p>
+        <h4 class="main__title">выберете ставку</h4>
+        <div class="start_game">
+            <button class="btn_start_game" id="start_game" onclick="startGame()"><i class="btn_text">ИГРАТЬ</i></button>
+        </div>
         <div class="bet_amount_selector" id="bet_amount_selector">
-            <button class="button_minus" onclick="handleMinus()">-</button>
-            <input type="number" inputmode="numeric" class="input_bet_amount" id="bet_amount" value="50" oninput="this.value = this.value.replace(/\D+/g, '')">
-            <button class="button_plus" onclick="handlePlus()">+</button>
+            <button class="button_minus" onclick="handleMinus()"></button>
+            <label class="label_bet_amount">
+                <input type="number" inputmode="numeric" class="input_bet_amount" id="bet_amount" value="50" oninput="this.value = this.value.replace(/\D+/g, '')">
+            </label>
+            <button class="button_plus" onclick="handlePlus()"></button>
         </div>
         <div class="popular_bet_amount" id="popular_bet_amount">
-            <button class="button_bet_size" id="bet_size_100" onclick="setAmount(100)">100 р.</button>
-            <button class="button_bet_size" id="bet_size_500" onclick="setAmount(500)">500 р.</button>
-            <button class="button_bet_size" id="bet_size_1000" onclick="setAmount(1000)">1000 р.</button>
-            <button class="button_bet_size" id="bet_size_1000" onclick="setAmount(10000)">MAX</button>
+            <button class="button_bet_size" id="bet_size_100" onclick="setAmount(100)"><i class="btn_bet_text">100 UAH</i></button>
+            <button style="margin: 0 4px" class="button_bet_size" id="bet_size_500" onclick="setAmount(500)"><i class="btn_bet_text">500 UAH</i></button>
+            <button style="margin: 0 4px" class="button_bet_size" id="bet_size_1000" onclick="setAmount(1000)"><i class="btn_bet_text">1000 UAH</i></button>
+            <button class="button_bet_size" id="bet_size_1000" onclick="setAmount(10000)"><i class="btn_bet_text">MAX</i></button>
         </div>
         <div class="double_start">
             <div class="double_bet">
-                <button class="button_double_bet" id="double_bet" onclick="doubleBet()">Удвоить<br>ставку</button>
+                <button class="button_double_bet" id="double_bet" onclick="doubleBet()"><i class="btn_double_text">Удвоить ставку</i></button>
             </div>
-            <div class="start_game">
-                <button class="button_start_game" id="start_game" onclick="startGame()">Играть</button>
-            </div>
-            </div>
+
+        </div>
     </div>
     <div id="select_chest" class="select_chest"></div>
 </div>
