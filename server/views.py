@@ -15,7 +15,7 @@ def ajax_check_user(request):
     try:
         user = User.objects.get(telegram_id=telegram_id)
         wallet = Wallet.objects.get(owner=user)
-        bonus_game_count = 12 - user.bonus_game_count
+        bonus_game_count = 1000 + user.bonus_game_count
         user_last_game = Game.objects.filter(user=user).latest('id')
         last_game = user_last_game.amount
         response['message'] = 'account_exists'

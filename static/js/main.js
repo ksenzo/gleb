@@ -192,7 +192,7 @@ function startGame() {
                     data: {'telegram_id': userId, 'bet_amount': amount.value},
                     success: (result) => {
                         if (result.message === 'game_starts') {
-                            $('#balance').text('Баланс: ' + result.balance)
+                            $('#balance').text(`${result.balance} UAH`)
                             $("#chest_1").attr("class", "chest");
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
@@ -213,7 +213,7 @@ function selectChest(choice) {
         data: {'telegram_id': userId, 'choice': choice},
         success: (result) => {
             if (result.message === 'chest_selected') {
-                $('#balance').text('Баланс: ' + result.balance + ' рублей')
+                $('#balance').text(`${result.balance} UAH`)
                 firstChest = document.querySelector('#chest_1')
                 secondChest = document.querySelector('#chest_2')
                 firstChestOpened = firstChest.getAttribute("data-original")
@@ -267,7 +267,7 @@ function repeatBetGame(amount) {
                     data: {'telegram_id': userId, 'bet_amount': amount},
                     success: (result) => {
                         if (result.message === 'game_starts') {
-                            $('#balance').text('Баланс: ' + result.balance)
+                            $('#balance').text(`${result.balance} UAH`)
                             $("#chest_1").attr("class", "chest");
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
