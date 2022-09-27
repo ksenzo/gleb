@@ -18,3 +18,10 @@
     font-weight: 300;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Machine [Rus by me]';
+    src: url('../fonts/font.woff2');
+    font-weight: 300;
+    font-style: normal;
+}

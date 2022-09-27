@@ -144,7 +144,7 @@ def index(request):
     print(f'{t/c*100}%')
 
     return render(request,
-                  'game.html',
+                  'index.html',
                   context={
                       # 'roi': roi,
                       # 'games': games,
