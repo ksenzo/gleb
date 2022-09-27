@@ -43,14 +43,15 @@ body{
 .select_chests {
 
     height: 295px;
-    background-image: url("/static/img/light.gif");
+    background-image: url("/static/img/dark.gif");
     background-position: center;
     background-size: cover;
 }
 
 .sunduki {
     display: flex;
-    transform: translate(55px, 106px);
+    transform: translateY(106px);
+    justify-content: center;
 }
 .game_result{
     position: absolute;
