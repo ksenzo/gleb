@@ -11,7 +11,7 @@ $(document).ready(() => {
         data: {'telegram_id': userId},
         success: (result) => {
             if (result.message === 'account_exists') {
-                $('#balance').text('Баланс: ' + result.balance + ' рублей')
+                $('#balance').text(result.balance)
                 balance = parseInt(result.balance)
                 if (result.balance >= result.last_bet) {
                     $('#bet_amount').val(result.last_bet)
@@ -21,7 +21,7 @@ $(document).ready(() => {
                 if (result.bonus_game_count === 0) {
                     bonusGameStart()
                 } else {
-                    $('#bonus_counter').text('До бонусной игры осталось ' + result.bonus_game_count + ' игр')
+                    $('#bonus_counter').text(result.bonus_game_count)
                 }
             } else if (result.message === 'no_account') {
                 $('#balance').text('no_account')

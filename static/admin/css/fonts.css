@@ -12,11 +12,6 @@
     font-style: normal;
 }
 
-body {
-    height: 660px !important;
-    overflow: hidden;
-}
-
 @font-face {
     font-family: 'Roboto';
     src: url('../fonts/Roboto-Light-webfont.woff');
