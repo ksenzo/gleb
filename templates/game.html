@@ -46,14 +46,16 @@
 </div>
 <div id="game_to_start" class="game_to_start">
     <div id="select_chests" class="select_chests">
-        <div class="chest_1">
-            <img id="chest_1" class="chest_before_start" src="{% static 'img/sunduk_1.gif' %}" data-original="{% static 'img/sunduk_1_1.gif' %}">
-            <div id="game_result_left" class="game_result"></div>
-        </div>
-        <div class="chest_2">
-            <img id="chest_2" class="chest_before_start" src="{% static 'img/sunduk_2.gif' %}" data-original="{% static 'img/sunduk_2_1.gif' %}">
-            <div id="game_result_right" class="game_result"></div>
-        </div>
+         <div class="sunduki">
+            <div class="chest_1 sunduk">
+                <img id="chest_1" style="margin-right: 42px" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_1_1.gif' %}">
+                <div id="game_result_left" class="game_result"></div>
+            </div>
+            <div class="chest_2 sunduk2">
+                <img id="chest_2" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_2_1.gif' %}">
+                <div id="game_result_right" class="game_result"></div>
+            </div>
+         </div>
     </div>
     <div id="chose_bet_size" class="chose_bet_size">
         <h4 class="main__title">выберете ставку</h4>

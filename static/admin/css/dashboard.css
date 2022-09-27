@@ -42,12 +42,16 @@ body{
     background: #001251;
 }
 .select_chests {
-    display: flex;
+
     height: 295px;
-    flex-direction: row;
     background-image: url("/static/img/light.gif");
     background-position: center;
     background-size: cover;
+}
+
+.sunduki {
+    display: flex;
+    transform: translate(43px, 106px);
 }
 .game_result{
     position: absolute;
@@ -121,6 +125,12 @@ body{
     height: 72.13px;
 }
 
+.button_double_bet:hover,
+.button_double_bet:focus {
+    transform: scale(.95);
+    transition: all .1s ease 0s;
+}
+
 .button_minus{
     background-image: url('/static/img/minus.svg');
     background-repeat: no-repeat;
@@ -138,9 +148,20 @@ body{
     border: none;
     margin-left: 6px;
 }
-.button_plus:hover{background-color: #00FF00}
 
-.button_plus:active{background-color: #00FF00}
+.buttom_plus:hover,
+.button_plus:focus,
+.button_minus:focus,
+.button_plus:hover{
+    transform: scale(.9);
+    transition: all 0.1s ease 0.1s;
+}
+
+.btn_start_game:focus,
+.btn_start_game:hover{
+    box-shadow: 0px 8px 13px 0px #000000;
+    transition: all 0s ease 0s;
+}
 
 .input_bet_amount{
     font-size: 25px;
@@ -181,12 +202,15 @@ body{
     background-color: #ffffff00;
     border: none;
 }
-.button_bet_size:hover{
 
-}
-.button_bet_size:active{
 
+.button_bet_size:hover,
+.button_bet_size:focus,
+.button_bet_size:active {
+    background-color: #ffd284;
+    transition: all 0.1s ease 0s;
 }
+
 .deposit_methods{
     display: flex;
     padding-top: 20px;
@@ -456,7 +480,19 @@ input[type=radio] + label>img {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+    -webkit-text-stroke: 1px #ff5400;
+    animation: glow 2.5s ease-in-out infinite alternate;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -1px 1px 20px #FFFF32;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -1px 1px 20px #FFFF32;
+    }
+
+    to {
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), -1px 1px 0px #FFFF32;
+    }
 }
 
 .label_bet_amount {
@@ -496,5 +532,38 @@ input[type=radio] + label>img {
     text-fill-color: transparent;
     filter: drop-shadow(-1px 1px 2px #ED600ACC);
     -webkit-text-stroke: 1px #ff5400;
+}
+
+.sunduk {
+    animation: shake 1s cubic-bezier(.36,.07,.19,.97) infinite;
+    transform: rotate(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.sunduk2 {
+    animation: shake 1s cubic-bezier(.36,.07,.19,.97) infinite;
+    transform: rotate(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation-delay: .5s ;
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: rotate(-3deg);
+    }
+
+    20%, 80% {
+        transform: rotate(3deg);
+    }
+
+    30%, 50%, 70% {
+        transform: rotate(-3deg);
+    }
+
+    40%, 60% {
+        transform: rotate(3deg);
+    }
 }
 
