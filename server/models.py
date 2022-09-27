@@ -127,7 +127,7 @@ class Game(models.Model):
         else:
             pass
         self.user.bonus_game_count += 1
-        if self.user.bonus_game_count == 21:
+        if self.user.bonus_game_count == 13:
             bonus_game(self.user)
             self.user.bonus_game_count = 0
         self.user.save()

@@ -313,6 +313,7 @@ input[type=radio] + label>img {
 .bonus_counter {
     position: relative;
     width: 144px;
+    text-align: center;
     background: #141A2F;
     border-radius: 12px;
     margin-right: 8px;
