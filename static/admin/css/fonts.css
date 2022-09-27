@@ -12,6 +12,11 @@
     font-style: normal;
 }
 
+body {
+    height: 660px !important;
+    overflow: hidden;
+}
+
 @font-face {
     font-family: 'Roboto';
     src: url('../fonts/Roboto-Light-webfont.woff');
@@ -25,3 +30,11 @@
     font-weight: 300;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'Machine Gunk';
+    src: url('../fonts/Machine-Gunk.woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
