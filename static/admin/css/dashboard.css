@@ -29,7 +29,6 @@ body{
     color: var(--tg-theme-text-color);
     background: var(--tg-theme-bg-color);
     max-height: 750px;
-    overflow: hidden;
 }
 
 * {
@@ -51,7 +50,7 @@ body{
 
 .sunduki {
     display: flex;
-    transform: translate(43px, 106px);
+    transform: translate(55px, 106px);
 }
 .game_result{
     position: absolute;
