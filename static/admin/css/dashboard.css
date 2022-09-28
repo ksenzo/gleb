@@ -49,7 +49,7 @@ body{
 
 .sunduki {
     display: flex;
-    transform: translateY(106px);
+    transform: translateY(75px);
     justify-content: center;
 }
 .game_result{

@@ -53,13 +53,13 @@ function selectBonusChest(choice){
         url: '/server/ajax_start_bonus_game',
         data: {'telegram_id': userId},
         success: (result) => {
-            firstChest = document.querySelector('#bonus_chest_1')
-            secondChest = document.querySelector('#bonus_chest_2')
-            thirdChest = document.querySelector('#bonus_chest_3')
+            let firstChest = document.querySelector('#bonus_chest_1')
+            let secondChest = document.querySelector('#bonus_chest_2')
+            let thirdChest = document.querySelector('#bonus_chest_3')
 
-            firstChestOpened = firstChest.getAttribute("data-original")
-            secondChestOpened = secondChest.getAttribute("data-original")
-            thirdChestOpened = thirdChest.getAttribute("data-original")
+            let firstChestOpened = firstChest.getAttribute("data-original")
+            let secondChestOpened = secondChest.getAttribute("data-original")
+            let thirdChestOpened = thirdChest.getAttribute("data-original")
 
             firstChest.setAttribute('src', firstChestOpened)
             secondChest.setAttribute('src', secondChestOpened)
@@ -331,6 +331,8 @@ function handlePlusDep() {
         deposit_amount.value = parseInt(deposit_amount.value) + 5000
     }
 }
+
+//selectChest('left');
 
 function setAmountDep(deposit_amount_value) {
     deposit_amount.value = deposit_amount_value
