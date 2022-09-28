@@ -47,12 +47,13 @@
 <div id="game_to_start" class="game_to_start">
     <div id="select_chests" class="select_chests">
         <div class="sunduki">
+            <div id="game_result" class="game_result"></div>
             <div class="chest_1 sunduk">
-                <img id="chest_1" style="margin-right: 42px; width: 124px;" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_empty.gif' %}">
+                <img id="chest_1" style="margin-right: 15px; width: 160px;" src="{% static 'img/sunduk_static.png' %}" data-original-win="{% static 'img/sunduk_full.gif' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}">
                 <div id="game_result_left" class="game_result"></div>
             </div>
             <div class="chest_2 sunduk2">
-                <img id="chest_2" style="width: 124px;" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_full.gif' %}">
+                <img id="chest_2" style="width: 160px;" src="{% static 'img/sunduk_static.png' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}" data-original-win="{% static 'img/sunduk_full.gif' %}">
                 <div id="game_result_right" class="game_result"></div>
             </div>
         </div>

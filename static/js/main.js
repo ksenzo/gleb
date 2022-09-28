@@ -214,10 +214,10 @@ function selectChest(choice) {
         success: (result) => {
             if (result.message === 'chest_selected') {
                 $('#balance').text(`${result.balance} UAH`)
-                firstChest = document.querySelector('#chest_1')
-                secondChest = document.querySelector('#chest_2')
-                firstChestOpened = firstChest.getAttribute("data-original")
-                secondChestOpened = secondChest.getAttribute("data-original")
+                let firstChest = document.querySelector('#chest_1')
+                let secondChest = document.querySelector('#chest_2')
+                let firstChestOpened = firstChest.getAttribute("data-original")
+                let secondChestOpened = secondChest.getAttribute("data-original")
                 firstChest.setAttribute('src', firstChestOpened)
                 secondChest.setAttribute('src', secondChestOpened)
                 if (result.winning === 'game_winning') {
