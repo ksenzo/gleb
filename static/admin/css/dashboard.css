@@ -610,6 +610,7 @@ input[type=radio] + label>img {
     transform: translateY(-27px);
     background-image: url('/static/img/back_main_dep.png');
     background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .deposit_container_wrap {
