@@ -87,6 +87,20 @@ body{
     margin-bottom: 8px;
     transform: translateY(-87px);
 }
+
+.popular_dep_amount {
+    transform: translateY(105px);
+    display: flex;
+    justify-content: center;
+}
+
+.dep_amount_selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+    transform: translateY(100px);
+}
+
 .popular_bet_amount{
     display: flex;
     justify-content: space-betwen;
@@ -95,26 +109,7 @@ body{
 .double_start{
     transform: translateY(-75px);
 }
-.button_start_game, .button_new_game{
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #44E083;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
-}
-.button_start_game:hover, .button_new_game:hover{background-color: #00FF00}
-.button_start_game:active, .button_new_game:active{
-    background-color: #00FF00;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
+
 .button_double_bet{
     background-image: url('/static/img/make_bet.svg');
     background-repeat: no-repeat;
@@ -211,18 +206,51 @@ body{
     transition: all 0.1s ease 0s;
 }
 
-.deposit_methods{
+.deposit_methods {
     display: flex;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    /*padding: 10px;*/
+    justify-content: center;
+    transform: translateY(124px);
 }
+
+.chose_deposit_method {
+    transform: translateY(134px);
+    text-align: center;
+}
+
+.button_start_game {
+    background-image: url(/static/img/pay_btn.svg);
+    background-repeat: no-repeat;
+    width: 254px;
+    height: 58px;
+    background-color:#FFFFFF00;
+    border: none;
+}
+
+.button_start_game_text {
+    font-family: 'Machine [Rus by me]';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, #FFFFFF 49.39%, #CBFF79 84%), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.pay {
+    width: 81px;
+    text-align: center;
+    height: 39px;
+    background: #fff;
+    border-radius: 10px;
+}
+
 .payment_method{
-    height: 50px;
-    width: 100px;
     margin-top: 5px;
     margin-left: 5px;
-
 }
 .payment_method img{
     /*padding: 10px;*/
@@ -570,4 +598,24 @@ input[type=radio] + label>img {
         transform: rotate(3deg);
     }
 }
+
+.deposit_container {
+    height: 295px;
+    background-image: url(/static/img/light.gif);
+    background-position: center 288px;
+    background-size: cover;
+}
+
+.deposit_amount_container {
+    height: 760px;
+    transform: translateY(-27px);
+    background-image: url('/static/img/back_main_dep.png');
+    background-repeat: no-repeat;
+}
+
+.deposit_container_wrap {
+    transform: translateY(157px);
+}
+
+
 

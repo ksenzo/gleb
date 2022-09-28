@@ -44,15 +44,15 @@
         </div>
     </div>
 </div>
-<div id="game_to_start" class="game_to_start">
+<div hidden id="game_to_start" class="game_to_start">
     <div id="select_chests" class="select_chests">
          <div class="sunduki">
             <div class="chest_1 sunduk">
-                <img id="chest_1" style="margin-right: 42px" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_1_1.gif' %}">
+                <img id="chest_1" style="margin-right: 42px; width: 124px;" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_1_1.gif' %}">
                 <div id="game_result_left" class="game_result"></div>
             </div>
             <div class="chest_2 sunduk2">
-                <img id="chest_2" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_2_1.gif' %}">
+                <img id="chest_2" style="width: 124px;" src="{% static 'img/sunduk.svg' %}" data-original="{% static 'img/sunduk_2_1.gif' %}">
                 <div id="game_result_right" class="game_result"></div>
             </div>
          </div>
@@ -84,35 +84,38 @@
     </div>
     <div id="select_chest" class="select_chest"></div>
 </div>
-<div hidden id="deposit_container" class="deposit_container">
-    <div class="deposit_amount_container">
-        <div class="bet_amount_selector" id="deposit_amount_selector">
-            <button class="button_minus" onclick="handleMinusDep()">-</button>
-            <input type="number" inputmode="numeric" class="input_bet_amount" id="deposit_amount" value="250" oninput="this.value = this.value.replace(/\D+/g, '')"  >
-            <button class="button_plus" onclick="handlePlusDep()">+</button>
-        </div>
-        <div class="popular_bet_amount" id="popular_deposit_amount">
-            <button class="button_bet_size" id="deposit_size_100" onclick="setAmountDep(100)">100 р.</button>
-            <button class="button_bet_size" id="deposit_size_1000" onclick="setAmountDep(1000)">1000 р.</button>
-            <button class="button_bet_size" id="deposit_size_10000" onclick="setAmountDep(10000)">10000 р.</button>
-        </div>
+<div id="deposit_container" class="deposit_container">
+    <div class="deposit_container_wrap">
+        <div class="deposit_amount_container">
+            <div class="dep_amount_selector" id="deposit_amount_selector">
+                <button class="button_minus" onclick="handleMinusDep()">-</button>
+                <label class="label_bet_amount">
+                    <input type="number" inputmode="numeric" class="input_bet_amount" id="deposit_amount" value="250" oninput="this.value = this.value.replace(/\D+/g, '')">
+                </label>
+                <button class="button_plus" onclick="handlePlusDep()">+</button>
+            </div>
+            <div class="popular_dep_amount" id="popular_deposit_amount">
+                <button class="button_bet_size" id="deposit_size_100" onclick="setAmountDep(100)"><i class="btn_bet_text">100 UAH</i></button>
+                <button style="margin: 0 4px" class="button_bet_size" id="deposit_size_500" onclick="setAmountDep(500)"><i class="btn_bet_text">500 UAH</i></button>
+                <button style="margin: 0 4px" class="button_bet_size" id="deposit_size_1000" onclick="setAmountDep(1000)"><i class="btn_bet_text">1000 UAH</i></button>
+                <button class="button_bet_size" id="deposit_size_10000" onclick="setAmountDep(10000)"><i class="btn_bet_text">MAX</i></button>
+            </div>
 
-        <div class="deposit_methods" id="deposit_methods">
-            <div class="payment_method">
-                <input type="radio" name="payment_method" id="sber" class="input-hidden" />
-                <label for="sber">
-                    <img src="{% static 'img/pay/sber_no_bg.png' %}">
-                </label>
+            <div class="deposit_methods" id="deposit_methods">
+                <div class="payment_method">
+                    <div class="pay" style="margin-right: 5px;">
+                        <img src="{% static 'img/apple-pay.svg' %}">
+                    </div>
+                </div>
+                <div class="payment_method">
+                    <div class="pay">
+                        <img style="padding-top: 10px;" src="{% static 'img/mark-check.svg' %}">
+                    </div>
+                </div>
             </div>
-            <div class="payment_method">
-                <input type="radio" name="payment_method" id="tinkoff" class="input-hidden" />
-                <label for="tinkoff">
-                    <img src="{% static 'img/pay/tinkoff_no_bg.png' %}">
-                </label>
+            <div class="chose_deposit_method" id="chose_deposit_method">
+                <button class="button_start_game" id="deposit_method"><i class="button_start_game_text">Оплатить</i></button>
             </div>
-        </div>
-        <div class="chose_deposit_method" id="chose_deposit_method">
-            <button class="button_start_game" id="deposit_method">Оплатить</button>
         </div>
     </div>
 </div>
