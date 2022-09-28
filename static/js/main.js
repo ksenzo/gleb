@@ -221,25 +221,61 @@ function selectChest(choice) {
                 let firstChestOpenedLose = firstChest.getAttribute("data-original-lose")
                 let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
 
+
+                // if (result.winning === 'game_winning') {
+                //     $('#select_chest').text('Вы выиграли!')
+                //     if (choice === 'left') {
+                //         $("#game_result_left").text(result.winning_amount)
+                //         $("#game_result_right").text(0)
+                //     } else if (choice === 'right') {
+                //         $("#game_result_left").text(0)
+                //         $("#game_result_right").text(result.winning_amount)
+                //     }
+                // } else if (result.winning === 'game_loosing') {
+                //     $('#select_chest').text('Повезёт в следующий раз')
+                //     if (choice === 'left') {
+                //         $("#game_result_left").text(0)
+                //         $("#game_result_right").text(result.winning_amount)
+                //     } else if (choice === 'right') {
+                //         $("#game_result_left").text(result.winning_amount)
+                //         $("#game_result_right").text(0)
+                //     }
+                // }
+
                 if (result.winning === 'game_winning') {
                     $('#select_chest').text('Вы выиграли!')
+                    $("#game_result").append(
+                        `<div style="display: flex; flex-direction: column; align-items: center;">
+                                <span class="win_font">ПОБЕДА!</span>
+                                <span class="win_font">${result.winning_amount}</span>
+                            </div>`
+                    )
                     if (choice === 'left') {
-                        $("#game_result_left").text(result.winning_amount)
-                        $("#game_result_right").text(0)
+                        firstChest.setAttribute('src', firstChestOpenedWin);
+                        secondChest.setAttribute('src', secondChestOpenedLose);
                     } else if (choice === 'right') {
-                        $("#game_result_left").text(0)
-                        $("#game_result_right").text(result.winning_amount)
+                        firstChest.setAttribute('src', firstChestOpenedLose);
+                        secondChest.setAttribute('src', secondChestOpenedWin);
+
                     }
                 } else if (result.winning === 'game_loosing') {
                     $('#select_chest').text('Повезёт в следующий раз')
+                    $("#game_result").append(
+                        `<div style="display: flex; flex-direction: column; align-items: center;">
+                                <span class="win_font">ПОПРОБУЙ ЕЩЕ РАЗ!</span>
+                            </div>`
+                    )
                     if (choice === 'left') {
-                        $("#game_result_left").text(0)
-                        $("#game_result_right").text(result.winning_amount)
+                        firstChest.setAttribute('src', firstChestOpenedLose);
+                        secondChest.setAttribute('src', secondChestOpenedWin);
                     } else if (choice === 'right') {
-                        $("#game_result_left").text(result.winning_amount)
-                        $("#game_result_right").text(0)
+                        firstChest.setAttribute('src', firstChestOpenedWin);
+                        secondChest.setAttribute('src', secondChestOpenedLose);
                     }
                 }
+
+
+
                 $('#chest_1').attr("onclick", "")
                 $('#chest_2').attr("onclick", "")
                 var newGameButton = `<button class="button_new_game" onclick="window.location.reload();">Новая игра</button>`
@@ -253,54 +289,6 @@ function selectChest(choice) {
         }
     })
 }
-
-// function selectChest(choice) {
-//     $.ajax({
-//         url: '/server/ajax_select_chest',
-//         data: {'telegram_id': userId, 'choice': choice},
-//         success: (result) => {
-//             if (result.message === 'chest_selected') {
-//                 $('#balance').text(`${result.balance} UAH`)
-//                 let firstChest = document.querySelector('#chest_1')
-//                 let secondChest = document.querySelector('#chest_2')
-//                 let firstChestOpened = firstChest.getAttribute("data-original")
-//                 let secondChestOpened = secondChest.getAttribute("data-original")
-//                 firstChest.setAttribute('src', firstChestOpened)
-//                 secondChest.setAttribute('src', secondChestOpened)
-//
-//                 if (result.winning === 'game_winning') {
-//                     $('#select_chest').text('Вы выиграли!')
-//                     if (choice === 'left') {
-//                         $("#game_result_left").text(result.winning_amount)
-//                         $("#game_result_right").text(0)
-//                     } else if (choice === 'right') {
-//                         $("#game_result_left").text(0)
-//                         $("#game_result_right").text(result.winning_amount)
-//                     }
-//                 } else if (result.winning === 'game_loosing') {
-//                     $('#select_chest').text('Повезёт в следующий раз')
-//                     if (choice === 'left') {
-//                         $("#game_result_left").text(0)
-//                         $("#game_result_right").text(result.winning_amount)
-//                     } else if (choice === 'right') {
-//                         $("#game_result_left").text(result.winning_amount)
-//                         $("#game_result_right").text(0)
-//                     }
-//                 }
-//                 $('#chest_1').attr("onclick", "")
-//                 $('#chest_2').attr("onclick", "")
-//                 var newGameButton = `<button class="button_new_game" onclick="window.location.reload();">Новая игра</button>`
-//                 // let repeatOnclick = `repeatBetGame(${winning_amount / 2});`
-//                 // var repeatBetButton = `<button id="repeatBetButton" class="button_new_game">Повторить<br>ставку</button>`
-//                 $("#game_to_start").append(newGameButton);
-//                 // repeat_button = document.getElementById('repeatBetButton')
-//                 // repeat_button.onclick =
-//                 // repeat_button.addEventListener("click", repeatBetGame(winning_amount / 2));
-//             }
-//         }
-//     })
-// }
-
 
 function repeatBetGame(amount) {
     $.ajax({
@@ -319,8 +307,8 @@ function repeatBetGame(amount) {
                             $("#chest_1").attr("class", "chest");
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
-                            $("#game_result_left").hide()
-                            $("#game_result_right").hide()
+
+
                             $('#select_chest').text('Выберите сундук')
                             $('#chest_1').attr("onclick", "selectChest('left')")
                             $('#chest_2').attr("onclick", "selectChest('right')")
