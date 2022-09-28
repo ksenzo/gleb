@@ -47,11 +47,6 @@ body{
     background-size: cover;
 }
 
-.game_result {
-    position: absolute;
-    top: 100px;
-    left: 30px;
-}
 
 .win_font {
     font-family: 'Machine [Rus by me]';
@@ -77,11 +72,10 @@ body{
 }
 .game_result{
     position: absolute;
-    top: 15%;
+    top: 61%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size:22px;
-    color:red;
     font-weight: bold;
     z-index: 5;
 
@@ -465,6 +459,7 @@ input[type=radio] + label>img {
 }
 
 .chose_bet_size {
+    display: none !important;
     background-image: url("/static/img/main-img.png");
     background-size: cover;
     padding-top: 175px;
@@ -474,6 +469,29 @@ input[type=radio] + label>img {
     align-items: center;
     background-repeat: no-repeat;
     transform: translateY(-41px);
+}
+
+.new_game_render_wrap {
+    background-image: url("/static/img/main-img.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 400px;
+    transform: translateY(-42px);
+    position: relative;
+}
+
+.button_new_game {
+    position: absolute;
+    top: 213px;
+    left: 132px;
+    font-family: 'Machine [Rus by me]';
+    -webkit-text-stroke: 1px #ff5400;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 52px;
+    letter-spacing: 0px;
+    color: #ffe296;
+    white-space: nowrap;
 }
 
 .main__title {
