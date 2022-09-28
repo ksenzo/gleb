@@ -50,9 +50,11 @@
              <div id="game_result" class="game_result"></div>
              <div class="chest_1 sunduk">
                 <img id="chest_1" style="margin-right: 15px; width: 160px;" src="{% static 'img/sunduk_static.png' %}" data-original-win="{% static 'img/sunduk_full.gif' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}">
+                 <div id="game_result_left" class="game_result"></div>
             </div>
             <div class="chest_2 sunduk2">
                 <img id="chest_2" style="width: 160px;" src="{% static 'img/sunduk_static.png' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}" data-original-win="{% static 'img/sunduk_full.gif' %}">
+                <div id="game_result_right" class="game_result"></div>
             </div>
          </div>
     </div>
@@ -78,7 +80,6 @@
             <div class="double_bet">
                 <button class="button_double_bet" id="double_bet" onclick="doubleBet()"><i class="btn_double_text">Удвоить ставку</i></button>
             </div>
-
         </div>
     </div>
     <div id="select_chest" class="select_chest"></div>
