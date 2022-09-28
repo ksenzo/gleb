@@ -459,7 +459,6 @@ input[type=radio] + label>img {
 }
 
 .chose_bet_size {
-    display: none !important;
     background-image: url("/static/img/main-img.png");
     background-size: cover;
     padding-top: 175px;
