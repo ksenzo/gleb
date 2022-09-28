@@ -220,8 +220,6 @@ function selectChest(choice) {
                 let secondChestOpenedWin = secondChest.getAttribute("data-original-win")
                 let firstChestOpenedLose = firstChest.getAttribute("data-original-lose")
                 let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
-                firstChest.setAttribute('src', firstChestOpenedWin);
-                secondChest.setAttribute('src', secondChestOpenedLose);
 
                 if (result.winning === 'game_winning') {
                     $('#select_chest').text('Вы выиграли!')
