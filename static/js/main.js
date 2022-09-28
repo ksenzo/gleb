@@ -256,7 +256,10 @@ function selectChest(choice) {
                                     </div>`
                 // let repeatOnclick = `repeatBetGame(${winning_amount / 2});`
                 // var repeatBetButton = `<button id="repeatBetButton" class="button_new_game">Повторить<br>ставку</button>`
-                $("#game_to_start").append(newGameButton);
+                setTimeout(function(){
+                    $("#game_to_start").append(newGameButton);
+                }, 500);
+
                 // repeat_button = document.getElementById('repeatBetButton')
                 // repeat_button.onclick =
                 // repeat_button.addEventListener("click", repeatBetGame(winning_amount / 2));
