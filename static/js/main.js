@@ -222,13 +222,15 @@ function selectChest(choice) {
                 let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
 
                 if (result.winning === 'game_winning') {
-                    $('#select_chest').text('Вы выиграли!')
-
+                    $("#game_result").append(
+                            `<div style="display: flex; flex-direction: column; align-items: center;">
+                                <span class="win_font">ПОБЕДА!</span>
+                                <span class="win_font">${result.winning_amount}</span>
+                            </div>`
+                    )
                     if (choice === 'left') {
                         firstChest.setAttribute('src', firstChestOpenedWin);
                         secondChest.setAttribute('src', secondChestOpenedLose);
-                        $("#game_result_left").text(result.winning_amount)
-                        $("#game_result_right").text(0)
                     } else if (choice === 'right') {
                         firstChest.setAttribute('src', firstChestOpenedLose);
                         secondChest.setAttribute('src', secondChestOpenedWin);
@@ -236,14 +238,18 @@ function selectChest(choice) {
                         $("#game_result_right").text(result.winning_amount)
                     }
                 } else if (result.winning === 'game_loosing') {
-
-                    $('#select_chest').text('Повезёт в следующий раз')
-
+                    $("#game_result").append(
+                        `<div style="display: flex; flex-direction: column; align-items: center;">
+                                <span class="win_font">ПОПРОБУЙ ЕЩЕ РАЗ!</span>
+                            </div>`
+                    )
                     if (choice === 'left') {
                         firstChest.setAttribute('src', firstChestOpenedLose);
                         secondChest.setAttribute('src', secondChestOpenedWin);
                         $("#game_result_left").text(0)
-                        $("#game_result_right").text(result.winning_amount)
+                        $("#game_result_right").text('qwe'
+
+                        )
                     } else if (choice === 'right') {
                         firstChest.setAttribute('src', firstChestOpenedWin);
                         secondChest.setAttribute('src', secondChestOpenedLose);
