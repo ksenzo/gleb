@@ -28,7 +28,6 @@ ul.actionlist li {
 body{
     color: var(--tg-theme-text-color);
     background: var(--tg-theme-bg-color);
-    max-height: 750px;
 }
 
 * {
