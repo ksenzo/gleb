@@ -1,5 +1,5 @@
 let tg = window.Telegram.WebApp;
-let userId = `${tg.initDataUnsafe.user.id}`;
+let userId = `3`;
 let balance = null
 $(document).ready(() => {
     tg.expand();
@@ -214,27 +214,41 @@ function selectChest(choice) {
         success: (result) => {
             if (result.message === 'chest_selected') {
                 $('#balance').text(`${result.balance} UAH`)
-                firstChest = document.querySelector('#chest_1')
-                secondChest = document.querySelector('#chest_2')
-                firstChestOpened = firstChest.getAttribute("data-original")
-                secondChestOpened = secondChest.getAttribute("data-original")
-                firstChest.setAttribute('src', firstChestOpened)
-                secondChest.setAttribute('src', secondChestOpened)
+                let firstChest = document.querySelector('#chest_1')
+                let secondChest = document.querySelector('#chest_2')
+                let firstChestOpenedWin = firstChest.getAttribute("data-original-win")
+                let secondChestOpenedWin = secondChest.getAttribute("data-original-win")
+                let firstChestOpenedLose = firstChest.getAttribute("data-original-lose")
+                let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
+                firstChest.setAttribute('src', firstChestOpenedWin);
+                secondChest.setAttribute('src', secondChestOpenedLose);
+
                 if (result.winning === 'game_winning') {
                     $('#select_chest').text('Вы выиграли!')
+
                     if (choice === 'left') {
+                        firstChest.setAttribute('src', firstChestOpenedWin);
+                        secondChest.setAttribute('src', secondChestOpenedLose);
                         $("#game_result_left").text(result.winning_amount)
                         $("#game_result_right").text(0)
                     } else if (choice === 'right') {
+                        firstChest.setAttribute('src', firstChestOpenedLose);
+                        secondChest.setAttribute('src', secondChestOpenedWin);
                         $("#game_result_left").text(0)
                         $("#game_result_right").text(result.winning_amount)
                     }
                 } else if (result.winning === 'game_loosing') {
+
                     $('#select_chest').text('Повезёт в следующий раз')
+
                     if (choice === 'left') {
+                        firstChest.setAttribute('src', firstChestOpenedLose);
+                        secondChest.setAttribute('src', secondChestOpenedWin);
                         $("#game_result_left").text(0)
                         $("#game_result_right").text(result.winning_amount)
                     } else if (choice === 'right') {
+                        firstChest.setAttribute('src', firstChestOpenedWin);
+                        secondChest.setAttribute('src', secondChestOpenedLose);
                         $("#game_result_left").text(result.winning_amount)
                         $("#game_result_right").text(0)
                     }

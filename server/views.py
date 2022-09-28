@@ -84,9 +84,9 @@ def ajax_select_chest(request):
         else:
             response['winning'] = 'game_loosing'
             response['balance'] = Wallet.objects.get(owner=user).balance
-        response['winning_amount'] = game.amount * 2
-        response['message'] = 'chest_selected'
-        # response['balance'] = Wallet.objects.get(owner=user).balance
+            response['winning_amount'] = game.amount * 2
+            response['message'] = 'chest_selected'
+            # response['balance'] = Wallet.objects.get(owner=user).balance
 
 
     except User.DoesNotExist:
