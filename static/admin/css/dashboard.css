@@ -475,19 +475,19 @@ input[type=radio] + label>img {
     background-size: cover;
     background-repeat: no-repeat;
     height: 400px;
-    transform: translateY(-42px);
-    position: relative;
+    transform: translateY(-52px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .button_new_game {
-    position: absolute;
-    top: 213px;
-    left: 132px;
     font-family: 'Machine [Rus by me]';
     -webkit-text-stroke: 1px #ff5400;
     font-weight: 500;
     font-size: 18px;
     line-height: 52px;
+    transform: translateY(70px);
     letter-spacing: 0px;
     color: #ffe296;
     white-space: nowrap;
