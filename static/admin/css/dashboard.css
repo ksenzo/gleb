@@ -293,26 +293,7 @@ input[type=radio] + label>img {
     width: auto;
     transition: 500ms all;
 }
-.bonus_game_start_container{
-    display: flex;
-    /*flex-direction: column;*/
-    align-items: center;
-    justify-content: center;
-    /*background-image: url("/static/img/background_bonus.jpg");*/
-    /*background-position: center;*/
-    /*background-size: 100%;*/
-    height: 100vh;
-    /*height: 100%;*/
-}
-.bonus_game_start{
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
-    background-image: url("/static/img/background_bonus.jpg");
-    background-position: top;
-    background-size: 100%;
-    /*height: 100vh;*/
-}
+
 .bonus_game_start.hidden{
     display: none !important;
 }
@@ -322,19 +303,25 @@ input[type=radio] + label>img {
     font-weight: bold;
     text-align: center;
 }
+
 .bonus_chest_container_1{
-    /*display: flex;*/
-    /*flex-direction: row;*/
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 50vw;
 }
+
 .bonus_chest_container_2{
     display: flex;
-    flex-direction: row;
-    /*align-items: center;*/
-    width: 100vw;
+    align-items: center;
+    justify-content: center;
 }
+
+.bonus_chests_wrap {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(189px);
+}
+
 .bonus_chest{
     display: flex;
     flex-wrap: wrap;
@@ -895,6 +882,40 @@ body.__noscroll {
 .settings.__active {
     top: 0;
     transition: all .5s ease 0s;
+}
+
+.bonus_game_start_container {
+    background-image: url(/static/img/bonus_back.png);
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: cover;
+    background-position: 100%;
+}
+
+.bonus_game_start {
+    height: 100%;
+    position: relative;
+}
+
+.bonus_game_start::after {
+    position: absolute;
+    top: 16px;
+    left: 0;
+    content: '';background-image: url(/static/img/bonus_left.png);
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 196px;
+}
+
+.bonus_game_start::before {
+    position: absolute;
+    top: 16px;
+    right: 1px;
+    content: '';
+    background-image: url(/static/img/bonus_right.png);
+    background-repeat: no-repeat;
+    width: 33px;
+    height: 196px;
 }
 
 

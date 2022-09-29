@@ -21,7 +21,7 @@ $(document).ready(() => {
                 if (result.bonus_game_count === 0) {
                     bonusGameStart()
                 } else {
-                    $('#bonus_counter').text(`${result.bonus_game_count}/12`);
+                    $('#bonus_counter').text(`${12 - result.bonus_game_count}/12`);
                 }
             } else if (result.message === 'no_account') {
                 $('#balance').text('no_account')
@@ -32,9 +32,9 @@ $(document).ready(() => {
     tg.MainButton.onClick(showDeposit)
 })
 
-function bonusGameStart(){
+function bonusGameStart() {
     $("#game_to_start").hide();
-    $("#bonus_game_start").show()
+    $("#bonus_game_start").show();
     $.ajax({
         url: '/server/ajax_bonus_game',
         data: {'telegram_id': userId},
@@ -64,6 +64,7 @@ function selectBonusChest(choice){
             firstChest.setAttribute('src', firstChestOpened)
             secondChest.setAttribute('src', secondChestOpened)
             thirdChest.setAttribute('src', secondChestOpened)
+            console.log('qwe');
             if (choice === 'left') {
                 $("#bonus_game_result_left").text(result.winning)
                 $("#bonus_game_result_center").text(result.chest_2)
@@ -85,6 +86,8 @@ function selectBonusChest(choice){
         }
     })
 }
+
+//selectBonusChest('left');
 
 function showDeposit(){
     $("#game_to_start").hide();
@@ -367,7 +370,6 @@ function setAmountDep(deposit_amount_value) {
 }
 
 let openSetting = $('#settings_btn');
-let closeSetting = $('.settings_close');
 let settingsBlock = $('.settings');
 
 $(document).on("click", "#settings_btn", function () {
