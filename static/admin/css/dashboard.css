@@ -74,7 +74,7 @@ body{
     position: absolute;
     top: 57%;
     left: 50%;
-    transform: translate(-50%, -140px);
+    transform: translate(-50%, -170px);
     font-size:22px;
     font-weight: bold;
     z-index: 5;

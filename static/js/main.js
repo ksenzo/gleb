@@ -196,11 +196,11 @@ function startGame() {
                             $("#chest_1").attr("class", "chest");
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
-                            $('#select_chest').append(
+                                $('#select_chest').append(
                                     `<div class="new_game_render_wrap">
                                         <div class="choose_sunduk">ВЫБЕРИТЕ СУНДУК</div>
                                     </div>`
-                            )
+                                )
                             $('#chest_1').attr("onclick", "selectChest('left')")
                             $('#chest_2').attr("onclick", "selectChest('right')")
                         }
@@ -217,7 +217,9 @@ function selectChest(choice) {
         data: {'telegram_id': userId, 'choice': choice},
         success: (result) => {
             if (result.message === 'chest_selected') {
-                $('#select_chest').empty();
+                setTimeout(function(){
+                    $('#select_chest').empty();
+                }, 450);
                 $('#balance').text(`${result.balance} UAH`)
                 let firstChest = document.querySelector('#chest_1')
                 let secondChest = document.querySelector('#chest_2')
