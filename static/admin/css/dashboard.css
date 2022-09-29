@@ -885,16 +885,12 @@ body.__noscroll {
     transition: all .5s ease 0s;
 }
 
-.bonus_game_start_container {
+.bonus_game_start {
     background-image: url(/static/img/bonus_back.png);
     background-repeat: no-repeat;
     height: 100vh;
     background-size: cover;
     background-position: 100%;
-}
-
-.bonus_game_start {
-    height: 100%;
     position: relative;
 }
 
