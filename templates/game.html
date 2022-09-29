@@ -39,8 +39,53 @@
             </div>
             <span id="bonus_counter" class="numbers_bonus" style="z-index: 5"></span>
         </div>
-        <div class="settings" id="settings">
+        <div class="settings_btn" id="settings_btn">
             <img src="{% static 'img/settings.svg' %}">
+        </div>
+    </div>
+</div>
+<div class="settings">
+    <div class="settings_wrap">
+        <div class="settings_body">
+            <div class="settings_header">
+                <h3 class="settings_title">НАСТРОЙКИ</h3>
+                <div class="settings_close">
+                    <img src="{% static 'img/set_close.svg' %}">
+                </div>
+            </div>
+            <div class="settings_sounds">
+                <div class="settings_name">ЗВУК</div>
+                <div class="settings_music">
+                    <div class="settings_sound_music_img">
+                        <img src="{% static 'img/sound_music.svg' %}">
+                    </div>
+                    <div class="settings_sound_music_text">ЗВУК И МУЗЫКА</div>
+                </div>
+                <div class="settings_music">
+                    <div class="settings_sound_music_img">
+                        <img src="{% static 'img/sound.svg' %}">
+                    </div>
+                    <div class="settings_sound_music_text">ТОЛЬКО ЗВУК</div>
+                </div>
+                <div class="settings_music">
+                    <div class="settings_sound_music_img">
+                        <img src="{% static 'img/mute.svg' %}">
+                    </div>
+                    <div class="settings_sound_music_text">БЕЗ ЗВУКА</div>
+                </div>
+            </div>
+            <div class="settings_theme">
+                <div style="padding: 0" class="settings_name">TEMA</div>
+                <div class="settings_theme_btn">
+                    <div class="settings_theme_btn_option">ДЕНЬ</div>
+                    <div class="settings_theme_btn_turner">
+                        <img src="{% static 'img/moon.svg' %}">
+                        <div class="swiper_btn"></div>
+                        <img src="{% static 'img/sun.svg' %}">
+                    </div>
+                    <div class="settings_theme_btn_option">НОЧЬ</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

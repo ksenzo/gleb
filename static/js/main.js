@@ -365,3 +365,26 @@ function handlePlusDep() {
 function setAmountDep(deposit_amount_value) {
     deposit_amount.value = deposit_amount_value
 }
+
+let openSetting = $('#settings_btn');
+let closeSetting = $('.settings_close');
+let settingsBlock = $('.settings');
+
+$(document).on("click", "#settings_btn", function () {
+    settingsBlock.addClass('__active');
+    openSetting.addClass('__active');
+    $('body').addClass('__noscroll');
+});
+
+$(document).on("click", ".settings_close", function () {
+    settingsBlock.removeClass('__active');
+    openSetting.removeClass('__active');
+    $('body').removeClass('__noscroll');
+});
+
+$(document).on("click", ".swiper_btn", function () {
+    $(this).toggleClass('__active');
+    $('.settings_theme_btn_turner').toggleClass('__active');
+    $('.deposit_container').toggleClass('__active');
+    $('.select_chests').toggleClass('__active');
+});

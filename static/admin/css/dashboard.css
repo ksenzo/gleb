@@ -37,14 +37,20 @@ body{
 
 .header{
     height: 22px;
-    background: #001251;
+    background: #141a2f;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
 }
 .select_chests {
-
     height: 295px;
     background-image: url("/static/img/dark.gif");
     background-position: center;
     background-size: cover;
+}
+
+.select_chests.__active {
+    background-image: url("/static/img/light.gif");
 }
 
 
@@ -402,6 +408,8 @@ input[type=radio] + label>img {
 .bonus_row {
     position: relative;
     height: 24px;
+    border: 1px solid #0073e7;
+    border-radius: 12px;
 }
 
 .bonus_row::after {
@@ -550,12 +558,6 @@ input[type=radio] + label>img {
     z-index: 7;
 }
 
-.settings {
-    border-radius: 12px;
-    background: #141A2F;
-    padding: 3px 3px 0px 4px;
-}
-
 .btn_start_game {
     background-image: url(/static/img/play.png);
     width: 115px;
@@ -683,9 +685,13 @@ input[type=radio] + label>img {
 
 .deposit_container {
     height: 295px;
-    background-image: url(/static/img/light.gif);
+    background-image: url(/static/img/dark.gif);
     background-position: center 288px;
     background-size: cover;
+}
+
+.deposit_container.__active {
+    background-image: url(/static/img/light.gif);
 }
 
 .deposit_amount_container {
@@ -698,6 +704,197 @@ input[type=radio] + label>img {
 
 .deposit_container_wrap {
     transform: translateY(157px);
+}
+
+.settings {
+    background: #141A2F;
+    position: fixed;
+    width: 100%;
+    z-index: 98;
+    transition: all .5s ease 0s;
+    top: -100%;
+}
+
+.settings_wrap {
+
+}
+
+.settings_body {
+    padding: 85px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 6px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+}
+
+.settings_title {
+    font-family: 'Machine [Rus by me]';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: 0.08em;
+    background: linear-gradient(181.99deg, #FFFFFF 50.21%, #AEFFFC 83.33%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.settings_close {
+
+}
+
+.settings_sounds {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.settings_name {
+    font-family: 'Machine [Rus by me]';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 31px;
+    letter-spacing: 0.08em;
+    background: linear-gradient(181.99deg, #FFFFFF 50.21%, #AEFFFC 83.33%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    padding-top: 15px;
+}
+
+
+.settings_sound_music_img {
+    border: 3px solid #F9CB20;
+    border-radius: 12px;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.settings_sound_music_text {
+    font-family: 'Machine [Rus by me]';
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    background: linear-gradient(181.99deg, #FFFFFF 50.21%, #AEFFFC 83.33%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    max-width: 40px;
+    margin-top: 3px;
+}
+
+.settings_music {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings_theme {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 82px;
+}
+
+.settings_theme_btn {
+    display: flex;
+    align-items: center;
+}
+
+.settings_theme_btn_option {
+    font-family: 'Machine [Rus by me]';
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: 0.08em;
+    background: linear-gradient(181.99deg, #FFFFFF 50.21%, #AEFFFC 83.33%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.settings_theme_btn_turner {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    position: relative;
+    border: 2px solid #00D3FE;
+    border-radius: 10px;
+    margin: 0 10px;
+    transition: all 0.5s ease 0s;
+}
+
+.settings_theme_btn_turner.__active {
+    border: 2px solid #F9CB20;
+    transition: all 0.5s ease 0s;
+}
+
+.settings_theme_btn_turner img {
+    padding: 15px;
+}
+
+.swiper_btn {
+    position: absolute;
+    left: 2px;
+    background: #00D3FE;
+    border-radius: 7px;
+    width: 51px;
+    height: 51px;
+    transition: all 0.5s ease 0s;
+}
+
+.swiper_btn.__active {
+    background: #F9CB20;
+    left: 55px;
+    transition: all 0.5s ease 0s;
+}
+
+body.__noscroll {
+    overflow: hidden;
+}
+
+.settings_theme_btn_option {
+
+}
+
+.settings_btn {
+    display: block;
+    background: #141a2f;
+    border-radius: 12px;
+    padding: 4px 3px 1px 4px;
+}
+
+.settings_btn.__active {
+    display: none;
+}
+
+.settings.__active {
+    top: 0;
+    transition: all .5s ease 0s;
 }
 
 
