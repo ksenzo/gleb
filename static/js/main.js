@@ -19,7 +19,7 @@ $(document).ready(() => {
                     $('#bet_amount').val(result.balance)
                 }
                 if (result.bonus_game_count === 0) {
-
+                    bonusGameStart();
                 } else {
                     $('#bonus_counter').text(`${12 - result.bonus_game_count}/12`);
                 }
