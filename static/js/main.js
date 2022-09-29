@@ -232,9 +232,11 @@ function selectChest(choice) {
 
                     setTimeout(function(){
                         $("#game_result").append(
-                            `<div style="display: flex; flex-direction: column; align-items: center;">
-                                <span class="win_font">ПОБЕДА!</span>
-                                <span class="win_font">${result.winning_amount} UAH</span>
+                            `<div>
+                                <div class="win_msg_wrap">
+                                    <span class="win_font">ПОБЕДА!</span>
+                                    <span class="win_font">${result.winning_amount} UAH</span>
+                                </div>
                             </div>`
                         )
                     }, 500);
@@ -253,7 +255,9 @@ function selectChest(choice) {
                     setTimeout(function(){
                         $("#game_result").append(
                             `<div style="display: flex; flex-direction: column; align-items: center;">
-                                <span class="win_font">ПОПРОБУЙ ЕЩЕ РАЗ!</span>
+                                <div class="win_msg_wrap">
+                                    <span class="win_font">ПОПРОБУЙ ЕЩЕ РАЗ!</span>    
+                                </div>
                             </div>`
                         )
                     }, 500);

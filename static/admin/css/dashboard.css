@@ -471,6 +471,14 @@ input[type=radio] + label>img {
     transform: translateY(-41px);
 }
 
+.win_msg_wrap {
+    height: 104px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .new_game_render_wrap {
     background-image: url("/static/img/main-img.png");
     background-size: cover;
