@@ -217,6 +217,7 @@ function selectChest(choice) {
         data: {'telegram_id': userId, 'choice': choice},
         success: (result) => {
             if (result.message === 'chest_selected') {
+                $('#select_chest').empty();
                 $('#balance').text(`${result.balance} UAH`)
                 let firstChest = document.querySelector('#chest_1')
                 let secondChest = document.querySelector('#chest_2')
