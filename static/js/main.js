@@ -196,7 +196,11 @@ function startGame() {
                             $("#chest_1").attr("class", "chest");
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
-                            $('#select_chest').text('Выберите сундук')
+                            $('#select_chest').append(
+                                    `<div class="new_game_render_wrap">
+                                        <div class="choose_sunduk">ВЫБЕРИТЕ СУНДУК</div>
+                                    </div>`
+                            )
                             $('#chest_1').attr("onclick", "selectChest('left')")
                             $('#chest_2').attr("onclick", "selectChest('right')")
                         }
@@ -269,7 +273,7 @@ function selectChest(choice) {
                 $('#chest_1').attr("onclick", "")
                 $('#chest_2').attr("onclick", "")
                 var newGameButton = `<div class="new_game_render_wrap">
-                                        <button class="button_new_game btn_start_game" onclick="window.location.reload();"></button>
+                                        <button class="button_new_game btn_start_game" onclick="window.location.reload();">ИГРАТЬ</button>
                                     </div>`
                 // let repeatOnclick = `repeatBetGame(${winning_amount / 2});`
                 // var repeatBetButton = `<button id="repeatBetButton" class="button_new_game">Повторить<br>ставку</button>`
