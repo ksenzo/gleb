@@ -219,7 +219,7 @@ function selectChest(choice) {
             if (result.message === 'chest_selected') {
                 setTimeout(function(){
                     $('#select_chest').empty();
-                }, 450);
+                }, 501);
                 $('#balance').text(`${result.balance} UAH`)
                 let firstChest = document.querySelector('#chest_1')
                 let secondChest = document.querySelector('#chest_2')
