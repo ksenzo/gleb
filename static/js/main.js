@@ -234,12 +234,12 @@ function selectChest(choice) {
                     if (choice === 'left') {
                         firstChest.setAttribute('src', firstChestOpenedWin);
                         secondChest.setAttribute('src', secondChestOpenedLose);
-                        secondChest.addClass('__not_active');
-                        firstChest.addClass('__not_active')
+                        $('.sunduk').addClass('__not_active');
+                        $('.sunduk2').addClass('__not_active');
                     } else if (choice === 'right') {
                         secondChest.setAttribute('src', secondChestOpenedWin);
-                        firstChest.addClass('__not_active');
-                        secondChest.addClass('__not_active');
+                        $('.sunduk').addClass('__not_active');
+                        $('.sunduk2').addClass('__not_active');
                         firstChest.setAttribute('src', firstChestOpenedLose);
                     }
                 } else if (result.winning === 'game_loosing') {
@@ -253,13 +253,13 @@ function selectChest(choice) {
 
                     if (choice === 'left') {
                         firstChest.setAttribute('src', firstChestOpenedLose);
-                        firstChest.addClass('__not_active');
-                        secondChest.addClass('__not_active');
+                        $('.sunduk').addClass('__not_active');
+                        $('.sunduk2').addClass('__not_active');
                         secondChest.setAttribute('src', secondChestOpenedWin);
                     } else if (choice === 'right') {
                         secondChest.setAttribute('src', secondChestOpenedLose);
-                        firstChest.addClass('__not_active');
-                        secondChest.addClass('__not_active');
+                        $('.sunduk').addClass('__not_active');
+                        $('.sunduk2').addClass('__not_active');
                         firstChest.setAttribute('src', firstChestOpenedWin);
                     }
                 }
@@ -269,7 +269,7 @@ function selectChest(choice) {
                 $('#chest_1').attr("onclick", "")
                 $('#chest_2').attr("onclick", "")
                 var newGameButton = `<div class="new_game_render_wrap">
-                                        <button class="button_new_game btn_start_game" onclick="window.location.reload();">Новая игра</button>
+                                        <button class="button_new_game btn_start_game" onclick="window.location.reload();"></button>
                                     </div>`
                 // let repeatOnclick = `repeatBetGame(${winning_amount / 2});`
                 // var repeatBetButton = `<button id="repeatBetButton" class="button_new_game">Повторить<br>ставку</button>`
