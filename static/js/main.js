@@ -53,30 +53,36 @@ function selectBonusChest(choice){
         url: '/server/ajax_start_bonus_game',
         data: {'telegram_id': userId},
         success: (result) => {
-            let firstChest = document.querySelector('#bonus_chest_1')
-            let secondChest = document.querySelector('#bonus_chest_2')
-            let thirdChest = document.querySelector('#bonus_chest_3')
+            let firstChest = document.querySelector('#bonus_chest_1');
+            let secondChest = document.querySelector('#bonus_chest_2');
+            let thirdChest = document.querySelector('#bonus_chest_3');
+            let fourChest = document.querySelector('#bonus_chest_4');
+            let fiveChest = document.querySelector('#bonus_chest_5');
+            let sixChest = document.querySelector('#bonus_chest_6');
 
             let firstChestOpened = firstChest.getAttribute("data-original")
             let secondChestOpened = secondChest.getAttribute("data-original")
             let thirdChestOpened = thirdChest.getAttribute("data-original")
 
-            firstChest.setAttribute('src', firstChestOpened)
-            secondChest.setAttribute('src', secondChestOpened)
-            thirdChest.setAttribute('src', secondChestOpened)
-            console.log('qwe');
+            firstChest.setAttribute('src', firstChestOpened);
+            secondChest.setAttribute('src', secondChestOpened);
+            thirdChest.setAttribute('src', thirdChestOpened);
+            fourChest.setAttribute('src', firstChestOpened);
+            fiveChest.setAttribute('src', secondChestOpened);
+            sixChest.setAttribute('src', thirdChestOpened);
+
             if (choice === 'left') {
-                $("#bonus_game_result_left").text(result.winning)
-                $("#bonus_game_result_center").text(result.chest_2)
-                $("#bonus_game_result_right").text(result.chest_3)
+                $("#bonus_chest_1_result").text(result.winning);
+                $("#bonus_chest_2_result").text(result.chest_2);
+                $("#bonus_chest_3_result").text(result.chest_3);
             } else if (choice === 'center') {
-                $("#bonus_game_result_center").text(result.winning)
-                $("#bonus_game_result_left").text(result.chest_2)
-                $("#bonus_game_result_right").text(result.chest_3)
+                $("#bonus_chest_1_result").text(result.winning);
+                $("#bonus_chest_2_result").text(result.chest_2);
+                $("#bonus_chest_3_result").text(result.chest_3);
             } else if (choice === 'right') {
-                $("#bonus_game_result_right").text(result.winning)
-                $("#bonus_game_result_left").text(result.chest_2)
-                $("#bonus_game_result_center").text(result.chest_3)
+                $("#bonus_chest_1_result").text(result.winning);
+                $("#bonus_chest_2_result").text(result.chest_2);
+                $("#bonus_chest_3_result").text(result.chest_3);
             }
             $('#bonus_chest_1').attr("onclick", "")
             $('#bonus_chest_2').attr("onclick", "")
