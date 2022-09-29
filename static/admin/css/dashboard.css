@@ -622,6 +622,14 @@ input[type=radio] + label>img {
     animation-delay: .5s ;
 }
 
+#chest_1.__not_active {
+    animation: none;
+}
+
+#chest_2.__not_active {
+    animation: none;
+}
+
 @keyframes shake {
     10%, 90% {
         transform: rotate(-3deg);

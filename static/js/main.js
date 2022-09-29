@@ -222,28 +222,45 @@ function selectChest(choice) {
                 let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
 
                 if (result.winning === 'game_winning') {
-                    $("#game_result").append(
-                        `<div style="display: flex; flex-direction: column; align-items: center;">
+
+                    setTimeout(function(){
+                        $("#game_result").append(
+                            `<div style="display: flex; flex-direction: column; align-items: center;">
                                 <span class="win_font">ПОБЕДА!</span>
                                 <span class="win_font">${result.winning_amount} UAH</span>
-                        </div>`
-                    )
+                            </div>`
+                        )
+                    }, 500);
                     if (choice === 'left') {
                         firstChest.setAttribute('src', firstChestOpenedWin);
+                        secondChest.setAttribute('src', secondChestOpenedLose);
+                        secondChest.addClass('__not_active');
+                        firstChest.addClass('__not_active')
                     } else if (choice === 'right') {
                         secondChest.setAttribute('src', secondChestOpenedWin);
-
+                        firstChest.addClass('__not_active');
+                        secondChest.addClass('__not_active');
+                        firstChest.setAttribute('src', firstChestOpenedLose);
                     }
                 } else if (result.winning === 'game_loosing') {
-                    $("#game_result").append(
-                        `<div style="display: flex; flex-direction: column; align-items: center;">
+                    setTimeout(function(){
+                        $("#game_result").append(
+                            `<div style="display: flex; flex-direction: column; align-items: center;">
                                 <span class="win_font">ПОПРОБУЙ ЕЩЕ РАЗ!</span>
                             </div>`
-                    )
+                        )
+                    }, 500);
+
                     if (choice === 'left') {
                         firstChest.setAttribute('src', firstChestOpenedLose);
+                        firstChest.addClass('__not_active');
+                        secondChest.addClass('__not_active');
+                        secondChest.setAttribute('src', secondChestOpenedWin);
                     } else if (choice === 'right') {
                         secondChest.setAttribute('src', secondChestOpenedLose);
+                        firstChest.addClass('__not_active');
+                        secondChest.addClass('__not_active');
+                        firstChest.setAttribute('src', firstChestOpenedWin);
                     }
                 }
 
