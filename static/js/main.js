@@ -60,9 +60,9 @@ function selectBonusChest(choice) {
             let fiveChest = document.querySelector('#bonus_chest_5');
             let sixChest = document.querySelector('#bonus_chest_6');
 
-            let firstChestOpened = firstChest.getAttribute("data-original")
-            let secondChestOpened = secondChest.getAttribute("data-original")
-            let thirdChestOpened = thirdChest.getAttribute("data-original")
+            let firstChestOpened = firstChest.getAttribute("data-original");
+            let secondChestOpened = secondChest.getAttribute("data-original");
+            let thirdChestOpened = thirdChest.getAttribute("data-original");
 
             firstChest.setAttribute('src', firstChestOpened);
             secondChest.setAttribute('src', secondChestOpened);
