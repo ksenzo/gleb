@@ -294,9 +294,10 @@ input[type=radio] + label>img {
     transition: 500ms all;
 }
 
-.bonus_game_start.hidden{
+.bonus_game_start.hidden {
     display: none !important;
 }
+
 .bonus_h1{
     font-size: 30px;
     color: red;

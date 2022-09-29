@@ -32,23 +32,7 @@ $(document).ready(() => {
     tg.MainButton.onClick(showDeposit)
 })
 
-function bonusGameStart() {
-    $("#game_to_start").hide();
-    $("#bonus_game_start").show();
-    $.ajax({
-        url: '/server/ajax_bonus_game',
-        data: {'telegram_id': userId},
-        success: (result) => {
-            if (result.message === 'bonus_game_active') {
-                $('#bonus_chest_1').attr("onclick", "selectBonusChest('left')")
-                $('#bonus_chest_2').attr("onclick", "selectBonusChest('center')")
-                $('#bonus_chest_3').attr("onclick", "selectBonusChest('right')")
-            }
-        }
-    })
-}
-
-function selectBonusChest(choice){
+function selectBonusChest(choice) {
     $.ajax({
         url: '/server/ajax_start_bonus_game',
         data: {'telegram_id': userId},
@@ -93,7 +77,29 @@ function selectBonusChest(choice){
     })
 }
 
+
+function bonusGameStart() {
+    $("#game_to_start").hide();
+    $("#bonus_game_start").show();
+    $.ajax({
+        url: '/server/ajax_bonus_game',
+        data: {'telegram_id': userId},
+        success: (result) => {
+            if (result.message === 'bonus_game_active') {
+                $('#bonus_chest_1').attr("onclick", "selectBonusChest('left')")
+                $('#bonus_chest_2').attr("onclick", "selectBonusChest('center')")
+                $('#bonus_chest_3').attr("onclick", "selectBonusChest('right')")
+                $('#bonus_chest_4').attr("onclick", "selectBonusChest('left')")
+                $('#bonus_chest_5').attr("onclick", "selectBonusChest('center')")
+                $('#bonus_chest_6').attr("onclick", "selectBonusChest('right')")
+            }
+        }
+    })
+}
+
+//bonusGameStart();
 //selectBonusChest('left');
+
 
 function showDeposit(){
     $("#game_to_start").hide();
