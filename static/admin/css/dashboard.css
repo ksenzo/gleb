@@ -888,7 +888,6 @@ body.__noscroll {
 .bonus_game_start {
     background-image: url(/static/img/bonus_back.png);
     background-repeat: no-repeat;
-    height: 100vh;
     background-size: cover;
     background-position: 100%;
     position: relative;
