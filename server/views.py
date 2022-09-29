@@ -4,7 +4,6 @@ from .models import User, Wallet, Game, bonus_game
 from .randomizer import randomizer
 import time
 
-
 def game(request):
     return render(request, 'game.html', context={})
 
@@ -15,7 +14,7 @@ def ajax_check_user(request):
     try:
         user = User.objects.get(telegram_id=telegram_id)
         wallet = Wallet.objects.get(owner=user)
-        bonus_game_count = user.bonus_game_count
+        bonus_game_count = 20 - user.bonus_game_count
         user_last_game = Game.objects.filter(user=user).latest('id')
         last_game = user_last_game.amount
         response['message'] = 'account_exists'
@@ -150,13 +149,3 @@ def index(request):
                       # 'games': games,
                       'randomizers': randomizers,
                   })
-
-
-
-
-
-
-
-
-
-
