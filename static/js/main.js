@@ -65,49 +65,34 @@ function selectBonusChest(choice) {
             let fiveChest = document.querySelector('#bonus_chest_5');
             let sixChest = document.querySelector('#bonus_chest_6');
 
-            let firstChestOpenedWin = firstChest.getAttribute("data-original-win");
-            let secondChestOpenedWin = secondChest.getAttribute("data-original-win");
-            let thirdChestOpenedWin = thirdChest.getAttribute("data-original-win");
-            let fourChestOpenedWin = firstChest.getAttribute("data-original-win");
-            let fiveChestOpenedWin = secondChest.getAttribute("data-original-win");
-            let sixChestOpenedWin = thirdChest.getAttribute("data-original-win");
+            let firstChestOpened = firstChest.getAttribute("data-original");
+            let secondChestOpened = secondChest.getAttribute("data-original");
+            let thirdChestOpened = thirdChest.getAttribute("data-original");
 
-            let firstChestOpenedLose = firstChest.getAttribute("data-original-lose");
-            let secondChestOpenedLose = secondChest.getAttribute("data-original-lose");
-            let thirdChestOpenedLose = thirdChest.getAttribute("data-original-lose");
-            let fourChestOpenedLose = firstChest.getAttribute("data-original-lose");
-            let fiveChestOpenedLose = secondChest.getAttribute("data-original-lose");
-            let sixChestOpenedLose = thirdChest.getAttribute("data-original-lose");
+            firstChest.setAttribute('src', firstChestOpened);
+            secondChest.setAttribute('src', secondChestOpened);
+            thirdChest.setAttribute('src', thirdChestOpened);
+            fourChest.setAttribute('src', firstChestOpened);
+            fiveChest.setAttribute('src', secondChestOpened);
+            sixChest.setAttribute('src', thirdChestOpened);
 
             if (choice === 'left') {
-                firstChest.setAttribute('src', firstChestOpenedWin);
-                secondChest.setAttribute('src', secondChestOpenedWin);
-                thirdChest.setAttribute('src', thirdChestOpenedWin);
-                fourChest.setAttribute('src', firstChestOpenedWin);
-                fiveChest.setAttribute('src', secondChestOpenedWin);
-                sixChest.setAttribute('src', thirdChestOpenedWin);
+                $("#bonus_chest_1_result").text(result.winning);
+                $("#bonus_chest_2_result").text(result.chest_2);
+                $("#bonus_chest_3_result").text(result.chest_3);
             } else if (choice === 'center') {
-                firstChest.setAttribute('src', firstChestOpenedWin);
-                secondChest.setAttribute('src', secondChestOpenedWin);
-                thirdChest.setAttribute('src', thirdChestOpenedWin);
-                fourChest.setAttribute('src', firstChestOpenedWin);
-                fiveChest.setAttribute('src', secondChestOpenedWin);
-                sixChest.setAttribute('src', thirdChestOpenedWin);
+                $("#bonus_chest_1_result").text(result.winning);
+                $("#bonus_chest_2_result").text(result.chest_2);
+                $("#bonus_chest_3_result").text(result.chest_3);
             } else if (choice === 'right') {
-                firstChest.setAttribute('src', firstChestOpenedWin);
-                secondChest.setAttribute('src', secondChestOpenedWin);
-                thirdChest.setAttribute('src', thirdChestOpenedWin);
-                fourChest.setAttribute('src', firstChestOpenedWin);
-                fiveChest.setAttribute('src', secondChestOpenedWin);
-                sixChest.setAttribute('src', thirdChestOpenedWin);
+                $("#bonus_chest_1_result").text(result.winning);
+                $("#bonus_chest_2_result").text(result.chest_2);
+                $("#bonus_chest_3_result").text(result.chest_3);
             }
             $('#bonus_chest_1').attr("onclick", "")
             $('#bonus_chest_2').attr("onclick", "")
             $('#bonus_chest_3').attr("onclick", "")
-            $('#bonus_chest_4').attr("onclick", "")
-            $('#bonus_chest_5').attr("onclick", "")
-            $('#bonus_chest_6').attr("onclick", "")
-            var newGameButton = `<button class="button_new_game btn_start_game btn_new_game_bonus" onclick="window.location.reload();">Новая игра</button>`
+            var newGameButton = `<button class="button_new_game" onclick="window.location.reload();">Новая игра</button>`
             $("#bonus_game_start").append(newGameButton);
         }
     })
