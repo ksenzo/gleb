@@ -1,5 +1,5 @@
 let tg = window.Telegram.WebApp;
-let userId = `${tg.initDataUnsafe.user.id}`;
+let userId = 3;
 let balance = null
 $(document).ready(() => {
     tg.expand();
@@ -58,37 +58,56 @@ function selectBonusChest(choice) {
         url: '/server/ajax_start_bonus_game',
         data: {'telegram_id': userId},
         success: (result) => {
-            let sunduki = [...document.querySelectorAll('.bonus_sunduk')];
-            let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
-            let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
-            let winBonus = (sunduk) => {
-                sunduk.setAttribute('src', chestOpenedWin);
-            }
-            let loseBonus = () => {
-                sunduk.setAttribute('src', '...');
-            }
+            let firstChest = document.querySelector('#bonus_chest_1');
+            let secondChest = document.querySelector('#bonus_chest_2');
+            let thirdChest = document.querySelector('#bonus_chest_3');
+            let fourChest = document.querySelector('#bonus_chest_4');
+            let fiveChest = document.querySelector('#bonus_chest_5');
+            let sixChest = document.querySelector('#bonus_chest_6');
 
-            if (choice === 'left-1') {
-                winBonus(sunduki[0]);
-            } else if (choice === 'center-1') {
-                winBonus(sunduki[1]);
-            } else if (choice === 'right-1') {
-                winBonus(sunduki[2]);
-            } else if (choice === 'left-2') {
-                winBonus(sunduki[3]);
-            } else if (choice === 'center-2') {
-                winBonus(sunduki[4]);
-            } else if (choice === 'right-2') {
-                winBonus(sunduki[5]);
-            }
+            let firstChestOpenedWin = firstChest.getAttribute("data-original-win");
+            let secondChestOpenedWin = secondChest.getAttribute("data-original-win");
+            let thirdChestOpenedWin = thirdChest.getAttribute("data-original-win");
+            let fourChestOpenedWin = firstChest.getAttribute("data-original-win");
+            let fiveChestOpenedWin = secondChest.getAttribute("data-original-win");
+            let sixChestOpenedWin = thirdChest.getAttribute("data-original-win");
 
+            let firstChestOpenedLose = firstChest.getAttribute("data-original-lose");
+            let secondChestOpenedLose = secondChest.getAttribute("data-original-lose");
+            let thirdChestOpenedLose = thirdChest.getAttribute("data-original-lose");
+            let fourChestOpenedLose = firstChest.getAttribute("data-original-lose");
+            let fiveChestOpenedLose = secondChest.getAttribute("data-original-lose");
+            let sixChestOpenedLose = thirdChest.getAttribute("data-original-lose");
+
+            if (choice === 'left') {
+                firstChest.setAttribute('src', firstChestOpenedWin);
+                secondChest.setAttribute('src', secondChestOpenedWin);
+                thirdChest.setAttribute('src', thirdChestOpenedWin);
+                fourChest.setAttribute('src', firstChestOpenedWin);
+                fiveChest.setAttribute('src', secondChestOpenedWin);
+                sixChest.setAttribute('src', thirdChestOpenedWin);
+            } else if (choice === 'center') {
+                firstChest.setAttribute('src', firstChestOpenedWin);
+                secondChest.setAttribute('src', secondChestOpenedWin);
+                thirdChest.setAttribute('src', thirdChestOpenedWin);
+                fourChest.setAttribute('src', firstChestOpenedWin);
+                fiveChest.setAttribute('src', secondChestOpenedWin);
+                sixChest.setAttribute('src', thirdChestOpenedWin);
+            } else if (choice === 'right') {
+                firstChest.setAttribute('src', firstChestOpenedWin);
+                secondChest.setAttribute('src', secondChestOpenedWin);
+                thirdChest.setAttribute('src', thirdChestOpenedWin);
+                fourChest.setAttribute('src', firstChestOpenedWin);
+                fiveChest.setAttribute('src', secondChestOpenedWin);
+                sixChest.setAttribute('src', thirdChestOpenedWin);
+            }
             $('#bonus_chest_1').attr("onclick", "")
             $('#bonus_chest_2').attr("onclick", "")
             $('#bonus_chest_3').attr("onclick", "")
             $('#bonus_chest_4').attr("onclick", "")
             $('#bonus_chest_5').attr("onclick", "")
             $('#bonus_chest_6').attr("onclick", "")
-            var newGameButton = `<div style="display: flex; align-items: center; justify-content: center; width: 100%;"><button class="button_new_game btn_start_game btn_new_game_bonus" onclick="window.location.reload();">Новая игра</button></div>`
+            var newGameButton = `<button class="button_new_game btn_start_game btn_new_game_bonus" onclick="window.location.reload();">Новая игра</button>`
             $("#bonus_game_start").append(newGameButton);
         }
     })
