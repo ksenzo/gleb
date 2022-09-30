@@ -147,11 +147,11 @@ class Game(models.Model):
 
 
 def bonus_game(user):
-    user_games = Game.objects.filter(user=user).order_by('-id')[:12]
+    user_games = Game.objects.filter(user=user).order_by('-id')[:20]
     game_amount = 0
     for game in user_games:
         game_amount += game.amount
-    average_amount = game_amount/12
+    average_amount = game_amount/20
     game = BonusGame.objects.create(user=user, amount=average_amount)
     if randomizer(4):
         game.winning_amount = round(average_amount * 10)
