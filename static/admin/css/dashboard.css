@@ -523,7 +523,7 @@ input[type=radio] + label>img {
 }
 
 .btn_new_game_bonus {
-    transform: translate(135px, 210px) scale(1.3);
+    transform: translateY(210px) scale(1.3);
 }
 
 .main__title {

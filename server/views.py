@@ -98,7 +98,7 @@ def ajax_bonus_game(request):
     telegram_id = request.GET.get('telegram_id')
     try:
         user = User.objects.get(telegram_id=telegram_id)
-        if user.bonus_game_count == 20:
+        if user.bonus_game_count == 12:
             response['message'] = 'bonus_game_active'
         else:
             response['message'] = 'no_bonus_game'
