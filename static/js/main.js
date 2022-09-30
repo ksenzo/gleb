@@ -19,7 +19,7 @@ $(document).ready(() => {
                     $('#bet_amount').val(result.balance)
                 }
                 if (result.bonus_game_count === 0) {
-                    bonusGameStart();
+
                 } else {
                     $('#bonus_counter').text(`${12 - result.bonus_game_count}/12`);
                 }
@@ -32,62 +32,50 @@ $(document).ready(() => {
     tg.MainButton.onClick(showDeposit)
 })
 
-function bonusGameStart() {
+function bonusGameStart(){
     $("#game_to_start").hide();
-    $("#bonus_game_start").show();
+    $("#bonus_game_start").show()
     $.ajax({
         url: '/server/ajax_bonus_game',
         data: {'telegram_id': userId},
         success: (result) => {
             if (result.message === 'bonus_game_active') {
-                $('#bonus_chest_1').attr("onclick", "selectBonusChest('left-1')")
-                $('#bonus_chest_2').attr("onclick", "selectBonusChest('center-1')")
-                $('#bonus_chest_3').attr("onclick", "selectBonusChest('right-1')")
-                $('#bonus_chest_4').attr("onclick", "selectBonusChest('left-2')")
-                $('#bonus_chest_5').attr("onclick", "selectBonusChest('center-2')")
-                $('#bonus_chest_6').attr("onclick", "selectBonusChest('right-2')")
+                $('#bonus_chest_1').attr("onclick", "selectBonusChest('left')")
+                $('#bonus_chest_2').attr("onclick", "selectBonusChest('center')")
+                $('#bonus_chest_3').attr("onclick", "selectBonusChest('right')")
             }
         }
     })
 }
 
-//bonusGameStart();
-
-function selectBonusChest(choice) {
+function selectBonusChest(choice){
     $.ajax({
         url: '/server/ajax_start_bonus_game',
         data: {'telegram_id': userId},
         success: (result) => {
-            let firstChest = document.querySelector('#bonus_chest_1');
-            let secondChest = document.querySelector('#bonus_chest_2');
-            let thirdChest = document.querySelector('#bonus_chest_3');
-            let fourChest = document.querySelector('#bonus_chest_4');
-            let fiveChest = document.querySelector('#bonus_chest_5');
-            let sixChest = document.querySelector('#bonus_chest_6');
+            firstChest = document.querySelector('#bonus_chest_1')
+            secondChest = document.querySelector('#bonus_chest_2')
+            thirdChest = document.querySelector('#bonus_chest_3')
 
-            let firstChestOpened = firstChest.getAttribute("data-original");
-            let secondChestOpened = secondChest.getAttribute("data-original");
-            let thirdChestOpened = thirdChest.getAttribute("data-original");
+            firstChestOpened = firstChest.getAttribute("data-original")
+            secondChestOpened = secondChest.getAttribute("data-original")
+            thirdChestOpened = thirdChest.getAttribute("data-original")
 
-            firstChest.setAttribute('src', firstChestOpened);
-            secondChest.setAttribute('src', secondChestOpened);
-            thirdChest.setAttribute('src', thirdChestOpened);
-            fourChest.setAttribute('src', firstChestOpened);
-            fiveChest.setAttribute('src', secondChestOpened);
-            sixChest.setAttribute('src', thirdChestOpened);
-
+            firstChest.setAttribute('src', firstChestOpened)
+            secondChest.setAttribute('src', secondChestOpened)
+            thirdChest.setAttribute('src', secondChestOpened)
             if (choice === 'left') {
-                $("#bonus_chest_1_result").text(result.winning);
-                $("#bonus_chest_2_result").text(result.chest_2);
-                $("#bonus_chest_3_result").text(result.chest_3);
+                $("#bonus_game_result_left").text(result.winning)
+                $("#bonus_game_result_center").text(result.chest_2)
+                $("#bonus_game_result_right").text(result.chest_3)
             } else if (choice === 'center') {
-                $("#bonus_chest_1_result").text(result.winning);
-                $("#bonus_chest_2_result").text(result.chest_2);
-                $("#bonus_chest_3_result").text(result.chest_3);
+                $("#bonus_game_result_center").text(result.winning)
+                $("#bonus_game_result_left").text(result.chest_2)
+                $("#bonus_game_result_right").text(result.chest_3)
             } else if (choice === 'right') {
-                $("#bonus_chest_1_result").text(result.winning);
-                $("#bonus_chest_2_result").text(result.chest_2);
-                $("#bonus_chest_3_result").text(result.chest_3);
+                $("#bonus_game_result_right").text(result.winning)
+                $("#bonus_game_result_left").text(result.chest_2)
+                $("#bonus_game_result_center").text(result.chest_3)
             }
             $('#bonus_chest_1').attr("onclick", "")
             $('#bonus_chest_2').attr("onclick", "")
