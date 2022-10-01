@@ -65,7 +65,7 @@ function selectBonusChest(choice) {
             let winBonus = (sunduk, bonus) => {
                 sunduk.setAttribute('src', chestOpenedWin);
                 setTimeout(() => {
-                    bonus.append(result.winnig);
+                    bonus.append(result);
                 }, 1000);
             }
             let loseBonus = () => {
