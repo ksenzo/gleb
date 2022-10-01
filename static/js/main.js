@@ -1,5 +1,5 @@
 let tg = window.Telegram.WebApp;
-let userId = 3;
+let userId = `${tg.initDataUnsafe.user.id}`;
 let balance = null
 $(document).ready(() => {
     tg.expand();
@@ -94,7 +94,7 @@ function selectBonusChest(choice) {
 }
 
 
-bonusGameStart();
+//bonusGameStart();
 //selectBonusChest('left');
 
 
