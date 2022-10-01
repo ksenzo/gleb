@@ -62,11 +62,11 @@ function selectBonusChest(choice) {
             let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
             let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
 
-            let resultWinMsg = `<div className="bonus_win_text">${result.winnig}</div>`
-
             let winBonus = (sunduk, bonus) => {
                 sunduk.setAttribute('src', chestOpenedWin);
-                bonus.append(resultWinMsg);
+                setTimeout(() => {
+                    bonus.append(result.winnig);
+                }, 1000);
             }
             let loseBonus = () => {
                 sunduk.setAttribute('src', '...');

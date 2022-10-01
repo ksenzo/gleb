@@ -335,7 +335,6 @@ input[type=radio] + label>img {
 .bonus_game_result {
     position: absolute;
     top: 11px;
-    left: 20px;
 }
 
 .bonus_chest_1, .bonus_chest_2, .bonus_chest_3{
@@ -925,6 +924,8 @@ body.__noscroll {
     -webkit-text-stroke: 1px #ff5400;
     font-weight: 500;
     font-size: 22px;
+    text-align: center;
+    width: 100%;
     line-height: 52px;
     letter-spacing: 0px;
     color: #ffe296;
