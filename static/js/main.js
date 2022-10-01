@@ -58,27 +58,32 @@ function selectBonusChest(choice) {
         data: {'telegram_id': userId},
         success: (result) => {
             let sunduki = [...document.querySelectorAll('.bonus_sunduk')];
+            let resultsOfBonus = [...document.querySelectorAll('.bonus_game_result')];
             let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
             let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
-            let winBonus = (sunduk) => {
+
+            let resultWinMsg = `<div className="bonus_win_text">${result.winnig}</div>`
+
+            let winBonus = (sunduk, bonus) => {
                 sunduk.setAttribute('src', chestOpenedWin);
+                bonus.append(resultWinMsg);
             }
             let loseBonus = () => {
                 sunduk.setAttribute('src', '...');
             }
 
             if (choice === 'left-1') {
-                winBonus(sunduki[0]);
+                winBonus(sunduki[0], resultsOfBonus[0]);
             } else if (choice === 'center-1') {
-                winBonus(sunduki[1]);
+                winBonus(sunduki[1], resultsOfBonus[1]);
             } else if (choice === 'right-1') {
-                winBonus(sunduki[2]);
+                winBonus(sunduki[2], resultsOfBonus[2]);
             } else if (choice === 'left-2') {
-                winBonus(sunduki[3]);
+                winBonus(sunduki[3], resultsOfBonus[3]);
             } else if (choice === 'center-2') {
-                winBonus(sunduki[4]);
+                winBonus(sunduki[4], resultsOfBonus[4]);
             } else if (choice === 'right-2') {
-                winBonus(sunduki[5]);
+                winBonus(sunduki[5], resultsOfBonus[5]);
             }
 
             $('#bonus_chest_1').attr("onclick", "")
@@ -87,6 +92,7 @@ function selectBonusChest(choice) {
             $('#bonus_chest_4').attr("onclick", "")
             $('#bonus_chest_5').attr("onclick", "")
             $('#bonus_chest_6').attr("onclick", "")
+
             var newGameButton = `<div style="display: flex; align-items: center; justify-content: center; width: 100%;"><button class="button_new_game btn_start_game btn_new_game_bonus" onclick="window.location.reload();">Новая игра</button></div>`
             $("#bonus_game_start").append(newGameButton);
         }

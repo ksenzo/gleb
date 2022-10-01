@@ -328,23 +328,20 @@ input[type=radio] + label>img {
     flex-wrap: wrap;
     align-items: stretch;
     flex-direction: row;
+    position: relative;
     width: 100%;
 }
+
+.bonus_game_result {
+    position: absolute;
+    top: 11px;
+    left: 20px;
+}
+
 .bonus_chest_1, .bonus_chest_2, .bonus_chest_3{
     position: relative;
     text-align: center;
 }
-.bonus_game_result{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size:22px;
-    color:red;
-    font-weight: bold;
-}
-
-
 
 .balance {
     position: relative;
@@ -915,12 +912,22 @@ body.__noscroll {
 .bonus_game_start::before {
     position: absolute;
     top: 16px;
-    right: 1px;
+    right: 0px;
     content: '';
     background-image: url(/static/img/bonus_right.png);
     background-repeat: no-repeat;
     width: 33px;
     height: 196px;
+}
+
+.bonus_win_text {
+    font-family: 'Machine [Rus by me]';
+    -webkit-text-stroke: 1px #ff5400;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 52px;
+    letter-spacing: 0px;
+    color: #ffe296;
 }
 
 
