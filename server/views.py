@@ -103,7 +103,7 @@ def ajax_bonus_game(request):
         else:
             response['message'] = 'no_bonus_game'
     except User.DoesNotExist:
-        response['message'] = 'no_account'
+        response['message'] = 'bonus_game_active'
     return JsonResponse(response)
 
 
