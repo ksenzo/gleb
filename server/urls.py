@@ -1,10 +1,11 @@
 from django.urls import path, re_path
-from .views import game, index, ajax_check_user, ajax_check_bet_amount, ajax_start_game, ajax_select_chest, ajax_bonus_game, ajax_start_bonus_game
+from .views import game, index, ajax_check_user, ajax_check_bet_amount, ajax_start_game, ajax_select_chest, ajax_bonus_game, ajax_start_bonus_game, key_null_throw
 
 urlpatterns = [
     path('', game),
     path('test', index),
     path('ajax_check_user', ajax_check_user),
+    path('key_null_throw', key_null_throw),
     path('ajax_check_bet_amount', ajax_check_bet_amount),
     path('ajax_start_game', ajax_start_game),
     path('ajax_select_chest', ajax_select_chest),

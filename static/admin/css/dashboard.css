@@ -335,6 +335,7 @@ input[type=radio] + label>img {
 .bonus_game_result {
     position: absolute;
     top: 11px;
+    white-space: nowrap;
 }
 
 .bonus_chest_1, .bonus_chest_2, .bonus_chest_3{
@@ -931,5 +932,24 @@ body.__noscroll {
     color: #ffe296;
 }
 
+.keys {
+    display: flex;
+    justify-content: space-between;
+    width: 142px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+}
 
+.key {
+    background-image: url(/static/img/bonus_key0.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 16px;
+    height: 16px;
+}
+
+.key.__active {
+    background-image: url(/static/img/bonus_key.svg);
+}
 

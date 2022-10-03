@@ -9,6 +9,7 @@ class User(AbstractUser):
     new_user = models.BooleanField(default=True)
     new_game_count = models.IntegerField(default=0)
     bonus_game_count = models.IntegerField(default=0)
+    keys = models.IntegerField(default=0)
 
     def __str__(self):
         return str(self.telegram_id)
@@ -52,9 +53,6 @@ class Payment(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
 
-# class Box(models.Model):{
-#     result = models
-
 class BonusGame(models.Model):
     GAME_CHOICES = (
         ('left', 'left'),
@@ -81,6 +79,7 @@ class Game(models.Model):
     winning = models.BooleanField(default=False)
     choice = models.CharField(max_length=5, choices=GAME_CHOICES)
     demo_game = models.BooleanField(default=False)
+    key_win = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.user} | {self.winning}'
@@ -101,6 +100,7 @@ class Game(models.Model):
         wallet = Wallet.objects.get(owner=self.user)
         wallet.balance -= self.amount
         wallet.save()
+
         if self.user.new_game_count == 3:
             self.user.new_user = False
         if self.user.new_user:
@@ -108,13 +108,29 @@ class Game(models.Model):
             if self.amount <= 100:
                 if self.user.new_game_count <= 3:
                     self.winning = True
+                    self.key_win = True
             elif 100 < self.amount < 200:
                 if self.user.new_game_count <= 2:
                     self.winning = True
+                    self.key_win = True
             elif self.amount >= 200:
                 if self.user.new_game_count <= 1:
                     self.winning = True
+                    self.key_win = True
         else:
+            if self.user.keys == 0:
+                self.key_win = randomizer(90 * change_roi_of_game())
+            elif self.user.keys == 1:
+                self.key_win = randomizer(85 * change_roi_of_game())
+            elif self.user.keys == 2:
+                self.key_win = randomizer(70 * change_roi_of_game())
+            elif self.user.keys == 3:
+                self.key_win = randomizer(30 * change_roi_of_game())
+            elif self.user.keys == 4:
+                self.key_win = randomizer(10 * change_roi_of_game())
+            elif self.user.keys == 6:
+                self.key_win = randomizer(5 * change_roi_of_game())
+
             if self.amount <= 100:
                 self.winning = randomizer(30 * change_roi_of_game())
             elif 500 > self.amount > 100:
@@ -122,12 +138,8 @@ class Game(models.Model):
             elif self.amount >= 500:
                 self.winning = randomizer(10 * change_roi_of_game())
 
-        if self.winning:
-            pass
-        else:
-            pass
         self.user.bonus_game_count += 1
-        if self.user.bonus_game_count == 21:
+        if self.user.bonus_game_count == 13:
             bonus_game(self.user)
             self.user.bonus_game_count = 0
         self.user.save()
@@ -145,6 +157,51 @@ class Game(models.Model):
     #         # 90/10
     #         pass
 
+# Keys
+
+#     def start_key_game(self):
+#         keys = Keys.objects.get(owner=self.user)
+#         keys.balance -= self.amount
+#         keys.save()
+#         if self.user.new_game_count == 3:
+#             self.user.new_user = False
+#         if self.user.new_user:
+#             self.user.new_game_count += 1
+#             if self.amount <= 100:
+#                 if self.user.new_game_count <= 3:
+#                     self.winning = True
+#             elif 100 < self.amount < 200:
+#                 if self.user.new_game_count <= 2:
+#                     self.winning = True
+#             elif self.amount >= 200:
+#                 if self.user.new_game_count <= 1:
+#                     self.winning = True
+#         else:
+#             if self.amount <= 100:
+#                 self.winning = randomizer(30 * change_roi_of_game())
+#             elif 500 > self.amount > 100:
+#                 self.winning = randomizer(20 * change_roi_of_game())
+#             elif self.amount >= 500:
+#                 self.winning = randomizer(10 * change_roi_of_game())
+#
+#         if self.winning:
+#             pass
+#         else:
+#             pass
+#         self.user.bonus_game_count += 1
+#         if self.user.bonus_game_count == 21: #????????
+#             bonus_game(self.user)
+#             self.user.bonus_game_count = 0
+#         self.user.save()
+#         self.save()
+
+
+def reset_keys(user):
+    user = user
+    user.keys = 0
+    user.save()
+
+    return user.keys
 
 def bonus_game(user):
     user_games = Game.objects.filter(user=user).order_by('-id')[:12]
@@ -153,18 +210,20 @@ def bonus_game(user):
         game_amount += game.amount
     average_amount = game_amount/12
     game = BonusGame.objects.create(user=user, amount=average_amount)
-    if randomizer(4):
+    if randomizer(1):
+        game.winning_amount = round(average_amount * 100)
+    elif randomizer(19):
         game.winning_amount = round(average_amount * 10)
-        chest_2 = round(average_amount * 0.5)
-        chest_3 = round(average_amount)
-    elif randomizer(24):
+    elif randomizer(30):
         game.winning_amount = round(average_amount)
-        chest_2 = round(average_amount * 0.5)
-        chest_3 = round(average_amount * 10)
-    else:
+    elif randomizer(51):
+        game.winning_amount = round(average_amount * 1.5)
+    elif randomizer(50):
         game.winning_amount = round(average_amount * 0.5)
-        chest_2 = round(average_amount * 10)
-        chest_3 = round(average_amount)
+    elif randomizer(20):
+        game.winning_amount = round(average_amount / 10)
+    else:
+        game.winning_amount = round(average_amount / 100)
     game.save()
 
     user = user
@@ -174,11 +233,8 @@ def bonus_game(user):
     wallet = Wallet.objects.get(owner=user)
     wallet.balance += game.winning_amount
     wallet.save()
-    # chest_1 = round(average_amount * 0.5)
-    # chest_2 = round(average_amount)
-    # chest_3 = round(average_amount * 10)
 
-    return game.winning_amount, chest_2, chest_3
+    return game.winning_amount
 
 
 def get_all_game_results():

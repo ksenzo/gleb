@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import User, Wallet, Game, bonus_game
+from .models import User, Wallet, Game, bonus_game, reset_keys
 from .randomizer import randomizer
 import time
 
@@ -22,7 +22,19 @@ def ajax_check_user(request):
         response['last_bet'] = last_game
         response['balance'] = wallet.balance
         response['bonus_game_count'] = bonus_game_count
-        print(response)
+        response['keys'] = user.keys
+
+    except User.DoesNotExist:
+        response['message'] = 'no_account'
+    return JsonResponse(response)
+
+def key_null_throw(request):
+    response = dict()
+    telegram_id = request.GET.get('telegram_id')
+    try:
+        user = User.objects.get(telegram_id=telegram_id)
+        keys = reset_keys(user)
+        response['message'] = keys
     except User.DoesNotExist:
         response['message'] = 'no_account'
     return JsonResponse(response)
@@ -72,20 +84,33 @@ def ajax_select_chest(request):
         game = Game.objects.filter(user=user).last()
         game.choice = choice
         game.save()
+
+        if game.key_win:
+            if user.keys < 6:
+                user.keys += 1
+                user.save()
+            else:
+                pass
+            response['keys'] = user.keys
+            response['key_result'] = 'key_winning'
+        else:
+            response['key_result'] = 'key_lose'
+
         if game.winning:
             wallet = Wallet.objects.get(owner=user)
             wallet.balance += game.amount * 2
             wallet.save()
 
             response['winning'] = 'game_winning'
-
             response['balance'] = Wallet.objects.get(owner=user).balance
         else:
+
             response['winning'] = 'game_loosing'
             response['balance'] = Wallet.objects.get(owner=user).balance
+
         response['winning_amount'] = game.amount * 2
         response['message'] = 'chest_selected'
-        # response['balance'] = Wallet.objects.get(owner=user).balance
+        response['balance'] = Wallet.objects.get(owner=user).balance
 
 
     except User.DoesNotExist:
@@ -100,6 +125,7 @@ def ajax_bonus_game(request):
         user = User.objects.get(telegram_id=telegram_id)
         if user.bonus_game_count == 12:
             response['message'] = 'bonus_game_active'
+            response['keys'] = user.keys
         else:
             response['message'] = 'no_bonus_game'
     except User.DoesNotExist:
@@ -114,10 +140,9 @@ def ajax_start_bonus_game(request):
         user = User.objects.get(telegram_id=telegram_id)
         bonus_game_list = []
         bonus_game_list = bonus_game(user)
-        response['message'] = 'ok'
-        response['winning'] = bonus_game_list[0]
-        response['chest_2'] = bonus_game_list[1]
-        response['chest_3'] = bonus_game_list[2]
+        response['message'] = 'win'
+        response['winning'] = bonus_game_list
+        response['keys'] = user.keys
     except User.DoesNotExist:
         response['message'] = 'no_account'
     return JsonResponse(response)

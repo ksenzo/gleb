@@ -2,16 +2,22 @@ let tg = window.Telegram.WebApp;
 let userId = `${tg.initDataUnsafe.user.id}`;
 let balance = null
 $(document).ready(() => {
-    tg.expand();
-    tg.MainButton.text = "Депозит";
-    tg.MainButton.show();
+     tg.expand();
+     tg.MainButton.text = "Депозит";
+     tg.MainButton.show();
+    let keysAll = [...document.querySelectorAll('.key')];
 
     $.ajax({
         url: '/server/ajax_check_user',
         data: {'telegram_id': userId},
         success: (result) => {
+            console.log(result)
             if (result.message === 'account_exists') {
                 $('#balance').text(`${result.balance} UAH`)
+                $('.bonus_progress').css('width', `${(12 - result.bonus_game_count) * 11.7}px`);
+                for (let i = 0; i <= result.keys - 1; i++) {
+                    keysAll[i].classList.add('__active');
+                }
                 balance = parseInt(result.balance)
                 if (result.balance >= result.last_bet) {
                     $('#bet_amount').val(result.last_bet)
@@ -32,6 +38,35 @@ $(document).ready(() => {
     tg.MainButton.onClick(showDeposit)
 })
 
+let theme = localStorage.getItem('data-theme');
+let darkT = 'url(/static/img/dark.gif)';
+let lightT = 'url(/static/img/light.gif)';
+
+if (theme) {
+    $('#select_chests').css('background-image', theme);
+} else {
+    localStorage.setItem('data-theme', darkT);
+    let theme = localStorage.getItem('data-theme');
+    $('#select_chests').css('background-image', theme);
+}
+
+
+
+$(document).on("click", ".swiper_btn", function () {
+    let oldTheme = localStorage.getItem('data-theme');
+    if (oldTheme == darkT) {
+        localStorage.setItem('data-theme', lightT);
+        let newTheme = localStorage.getItem('data-theme');
+        $('#select_chests').css('background-image', newTheme);
+        theme = lightT;
+    } else if (oldTheme == lightT) {
+        localStorage.setItem('data-theme', darkT);
+        let newTheme = localStorage.getItem('data-theme');
+        $('#select_chests').css('background-image', newTheme);
+        theme = darkT;
+    }
+});
+
 function bonusGameStart() {
     $("#game_to_start").hide();
     $("#bonus_game_start").show();
@@ -51,52 +86,57 @@ function bonusGameStart() {
     })
 }
 
+let step = 0;
+
+function keysNull() {
+    $.ajax({
+        url: '/server/key_null_throw',
+        data: {'telegram_id': userId},
+        success: () => {
+            window.location.reload();
+        }
+    });
+}
 
 function selectBonusChest(choice) {
-    $.ajax({
-        url: '/server/ajax_start_bonus_game',
-        data: {'telegram_id': userId},
-        success: (result) => {
-            let sunduki = [...document.querySelectorAll('.bonus_sunduk')];
-            let resultsOfBonus = [...document.querySelectorAll('.bonus_game_result')];
-            let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
-            let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
+        step += 1;
+        $.ajax({
+            url: '/server/ajax_start_bonus_game',
+            data: {'telegram_id': userId},
+            success: (result) => {
+                let sunduki = [...document.querySelectorAll('.bonus_sunduk')];
+                let resultsOfBonus = [...document.querySelectorAll('.bonus_game_result')];
+                let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
+                let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
+                console.log(result)
+                let winBonus = (sunduk, bonus) => {
+                    sunduk.setAttribute('src', chestOpenedWin);
+                    setTimeout(() => {
+                        bonus.append(`${result.winning} UAH`);
+                    }, 1000);
+                }
 
-            let winBonus = (sunduk, bonus) => {
-                sunduk.setAttribute('src', chestOpenedWin);
-                setTimeout(() => {
-                    bonus.append(result.winning);
-                }, 1000);
+                if (step != result.keys + 1) {
+                    if (choice === 'left-1') {
+                        winBonus(sunduki[0], resultsOfBonus[0]);
+                    } else if (choice === 'center-1') {
+                        winBonus(sunduki[1], resultsOfBonus[1]);
+                    } else if (choice === 'right-1') {
+                        winBonus(sunduki[2], resultsOfBonus[2]);
+                    } else if (choice === 'left-2') {
+                        winBonus(sunduki[3], resultsOfBonus[3]);
+                    } else if (choice === 'center-2') {
+                        winBonus(sunduki[4], resultsOfBonus[4]);
+                    } else if (choice === 'right-2') {
+                        winBonus(sunduki[5], resultsOfBonus[5]);
+                    }
+                } else if (step == result.keys + 1) {
+                    step -= 1;
+                    let newGameButton = `<div style="display: flex; align-items: center; justify-content: center; width: 100%;"><button class="button_new_game btn_start_game btn_new_game_bonus" onclick="keysNull()">Новая игра</button></div>`
+                    $("#bonus_game_start").append(newGameButton);
+                }
             }
-            let loseBonus = () => {
-                sunduk.setAttribute('src', '...');
-            }
-
-            if (choice === 'left-1') {
-                winBonus(sunduki[0], resultsOfBonus[0]);
-            } else if (choice === 'center-1') {
-                winBonus(sunduki[1], resultsOfBonus[1]);
-            } else if (choice === 'right-1') {
-                winBonus(sunduki[2], resultsOfBonus[2]);
-            } else if (choice === 'left-2') {
-                winBonus(sunduki[3], resultsOfBonus[3]);
-            } else if (choice === 'center-2') {
-                winBonus(sunduki[4], resultsOfBonus[4]);
-            } else if (choice === 'right-2') {
-                winBonus(sunduki[5], resultsOfBonus[5]);
-            }
-
-            $('#bonus_chest_1').attr("onclick", "")
-            $('#bonus_chest_2').attr("onclick", "")
-            $('#bonus_chest_3').attr("onclick", "")
-            $('#bonus_chest_4').attr("onclick", "")
-            $('#bonus_chest_5').attr("onclick", "")
-            $('#bonus_chest_6').attr("onclick", "")
-
-            var newGameButton = `<div style="display: flex; align-items: center; justify-content: center; width: 100%;"><button class="button_new_game btn_start_game btn_new_game_bonus" onclick="window.location.reload();">Новая игра</button></div>`
-            $("#bonus_game_start").append(newGameButton);
-        }
-    })
+        })
 }
 
 
@@ -228,6 +268,7 @@ function startGame() {
         }
     })
 }
+
 
 function selectChest(choice) {
     $.ajax({
@@ -401,7 +442,7 @@ $(document).on("click", ".settings_close", function () {
 
 $(document).on("click", ".swiper_btn", function () {
     $(this).toggleClass('__active');
-    $('.settings_theme_btn_turner').toggleClass('__active');
-    $('.deposit_container').toggleClass('__active');
-    $('.select_chests').toggleClass('__active');
+    // $('.settings_theme_btn_turner').toggleClass('__active');
+    // $('.deposit_container').toggleClass('__active');
+    // $('.select_chests').toggleClass('__active');
 });
