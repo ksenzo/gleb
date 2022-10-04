@@ -119,17 +119,17 @@ class Game(models.Model):
                     self.key_win = True
         else:
             if self.user.keys == 0:
-                self.key_win = randomizer(90 * change_roi_of_game())
+                self.key_win = randomizer(60 * change_roi_of_game())
             elif self.user.keys == 1:
-                self.key_win = randomizer(85 * change_roi_of_game())
+                self.key_win = randomizer(60 * change_roi_of_game())
             elif self.user.keys == 2:
-                self.key_win = randomizer(70 * change_roi_of_game())
+                self.key_win = randomizer(60 * change_roi_of_game())
             elif self.user.keys == 3:
-                self.key_win = randomizer(30 * change_roi_of_game())
+                self.key_win = randomizer(60 * change_roi_of_game())
             elif self.user.keys == 4:
-                self.key_win = randomizer(10 * change_roi_of_game())
+                self.key_win = randomizer(30 * change_roi_of_game())
             elif self.user.keys == 6:
-                self.key_win = randomizer(5 * change_roi_of_game())
+                self.key_win = randomizer(30 * change_roi_of_game())
 
             if self.amount <= 100:
                 self.winning = randomizer(30 * change_roi_of_game())
@@ -209,7 +209,9 @@ def bonus_game(user):
     for game in user_games:
         game_amount += game.amount
     average_amount = game_amount/12
+    keys = user.keys
     game = BonusGame.objects.create(user=user, amount=average_amount)
+
     if randomizer(1):
         game.winning_amount = round(average_amount * 100)
     elif randomizer(19):

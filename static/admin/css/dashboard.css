@@ -332,6 +332,10 @@ input[type=radio] + label>img {
     width: 100%;
 }
 
+.bonus_chest.__active {
+    pointer-events: none;
+}
+
 .bonus_game_result {
     position: absolute;
     top: 11px;
@@ -636,9 +640,11 @@ input[type=radio] + label>img {
     transform: rotate(0);
     backface-visibility: hidden;
     perspective: 1000px;
+    position: relative;
 }
 
 .sunduk2 {
+    position: relative;
     animation: shake 1s cubic-bezier(.36,.07,.19,.97) infinite;
     transform: rotate(0);
     backface-visibility: hidden;
@@ -951,5 +957,28 @@ body.__noscroll {
 
 .key.__active {
     background-image: url(/static/img/bonus_key.svg);
+}
+
+.keys2 {
+    position: absolute;
+    top: 300px;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.key_win {
+    background-image: url(/static/img/bonus_key.svg);
+    width: 49px;
+    background-size: contain;
+    height: 49px;
+    position: absolute;
+    top: 42px;
+    left: 55px;
+    background-repeat: no-repeat;
+}
+
+.key2 {
+    width: 40px;
+    height: 40px;
 }
 

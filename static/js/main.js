@@ -6,6 +6,7 @@ $(document).ready(() => {
      tg.MainButton.text = "Депозит";
      tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
+    $('#keys').show();
 
     $.ajax({
         url: '/server/ajax_check_user',
@@ -69,12 +70,18 @@ $(document).on("click", ".swiper_btn", function () {
 
 function bonusGameStart() {
     $("#game_to_start").hide();
+    $('.key').removeClass('__active');
+    $('#keys').hide();
     $("#bonus_game_start").show();
     $.ajax({
         url: '/server/ajax_bonus_game',
         data: {'telegram_id': userId},
         success: (result) => {
             if (result.message === 'bonus_game_active') {
+                let keys = [...document.querySelectorAll('.key2')];
+                for (let i = 0; i < result.keys; i++) {
+                    keys[i].classList.add('__active');
+                }
                 $('#bonus_chest_1').attr("onclick", "selectBonusChest('left-1')")
                 $('#bonus_chest_2').attr("onclick", "selectBonusChest('center-1')")
                 $('#bonus_chest_3').attr("onclick", "selectBonusChest('right-1')")
@@ -85,6 +92,8 @@ function bonusGameStart() {
         }
     })
 }
+
+//bonusGameStart()
 
 let step = 0;
 
@@ -100,6 +109,8 @@ function keysNull() {
 
 function selectBonusChest(choice) {
         step += 1;
+        $("#game_to_start").hide();
+        $("#bonus_game_start").show();
         $.ajax({
             url: '/server/ajax_start_bonus_game',
             data: {'telegram_id': userId},
@@ -108,32 +119,57 @@ function selectBonusChest(choice) {
                 let resultsOfBonus = [...document.querySelectorAll('.bonus_game_result')];
                 let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
                 let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
-                console.log(result)
+                let keys = [...document.querySelectorAll('.key2')];
+
+                if (result.keys >= step) {
+                    keys[result.keys - step].classList.remove('__active');
+                }
+
                 let winBonus = (sunduk, bonus) => {
                     sunduk.setAttribute('src', chestOpenedWin);
                     setTimeout(() => {
                         bonus.append(`${result.winning} UAH`);
                     }, 1000);
+                    sunduk.classList.add('__active');
                 }
 
                 if (step != result.keys + 1) {
                     if (choice === 'left-1') {
                         winBonus(sunduki[0], resultsOfBonus[0]);
+                        setTimeout(() => {
+                            sunduki[0].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
                     } else if (choice === 'center-1') {
                         winBonus(sunduki[1], resultsOfBonus[1]);
+                        setTimeout(() => {
+                            sunduki[1].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
                     } else if (choice === 'right-1') {
                         winBonus(sunduki[2], resultsOfBonus[2]);
+                        setTimeout(() => {
+                            sunduki[2].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
                     } else if (choice === 'left-2') {
                         winBonus(sunduki[3], resultsOfBonus[3]);
+                        setTimeout(() => {
+                            sunduki[3].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
                     } else if (choice === 'center-2') {
                         winBonus(sunduki[4], resultsOfBonus[4]);
+                        setTimeout(() => {
+                            sunduki[4].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
                     } else if (choice === 'right-2') {
                         winBonus(sunduki[5], resultsOfBonus[5]);
+                        setTimeout(() => {
+                            sunduki[5].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
                     }
                 } else if (step == result.keys + 1) {
                     step -= 1;
                     let newGameButton = `<div style="display: flex; align-items: center; justify-content: center; width: 100%;"><button class="button_new_game btn_start_game btn_new_game_bonus" onclick="keysNull()">Новая игра</button></div>`
                     $("#bonus_game_start").append(newGameButton);
+                    $('.bonus_chest').addClass('__active');
                 }
             }
         })
@@ -279,13 +315,25 @@ function selectChest(choice) {
                 setTimeout(function(){
                     $('#select_chest').empty();
                 }, 501);
-                $('#balance').text(`${result.balance} UAH`)
+                $('#balance').text(`${result.balance} UAH`);
                 let firstChest = document.querySelector('#chest_1')
                 let secondChest = document.querySelector('#chest_2')
                 let firstChestOpenedWin = firstChest.getAttribute("data-original-win")
                 let secondChestOpenedWin = secondChest.getAttribute("data-original-win")
                 let firstChestOpenedLose = firstChest.getAttribute("data-original-lose")
                 let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
+
+                if (result.key_result === 'key_winning') {
+                    if (choice === 'left') {
+                        setTimeout(function(){
+                            firstChest.insertAdjacentHTML('beforebegin','<div class="key_win"></div>');
+                        }, 500);
+                    } else if (choice === 'right') {
+                        setTimeout(function(){
+                            secondChest.insertAdjacentHTML('beforebegin','<div class="key_win"></div>');
+                        }, 500);
+                    }
+                }
 
                 if (result.winning === 'game_winning') {
 
