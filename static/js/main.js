@@ -44,6 +44,7 @@ let darkT = 'url(/static/img/dark.gif)';
 let lightT = 'url(/static/img/light.gif)';
 
 if (theme) {
+
     $('#select_chests').css('background-image', theme);
     $('#bonus_game_start').css('background-image', theme);
 } else {
