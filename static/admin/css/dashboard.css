@@ -342,6 +342,21 @@ input[type=radio] + label>img {
     white-space: nowrap;
 }
 
+.bonus_game_result.__green {
+    color: #346538;
+    -webkit-text-stroke: 1px #00fd14;
+}
+
+.bonus_game_result.__yellow {
+    color: #b29903;
+    -webkit-text-stroke: 1px #ffca00;
+}
+
+.bonus_game_result.__red {
+    color: #c50000;
+    -webkit-text-stroke: 1px #fb8e8e;
+}
+
 .bonus_chest_1, .bonus_chest_2, .bonus_chest_3{
     position: relative;
     text-align: center;
@@ -893,12 +908,13 @@ body.__noscroll {
 }
 
 .bonus_game_start {
-    background-image: url(/static/img/bonus_back.png);
+    background-image: url(/static/img/dark.gif);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 100%;
     position: relative;
     height: 100vh;
+    background-position: -219px 6px;
 }
 
 .bonus_h1 {

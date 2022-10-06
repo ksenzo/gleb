@@ -13,8 +13,15 @@ def ajax_check_user(request):
     telegram_id = request.GET.get('telegram_id')
     try:
         user = User.objects.get(telegram_id=telegram_id)
+        if user.keys < 0:
+            user.keys = 0
+            user.save()
+        keys = user.keys
         wallet = Wallet.objects.get(owner=user)
-        bonus_game_count = 12 - user.bonus_game_count
+        if user.bonus_game_count == 0 and user.keys > 0:
+            bonus_game_count = 0
+        else:
+            bonus_game_count = user.bonus_game_count
         user_last_game = Game.objects.filter(user=user).latest('id')
         last_game = user_last_game.amount
         response['message'] = 'account_exists'
@@ -123,10 +130,13 @@ def ajax_bonus_game(request):
     telegram_id = request.GET.get('telegram_id')
     try:
         user = User.objects.get(telegram_id=telegram_id)
-        if user.bonus_game_count == 12:
+        if user.bonus_game_count == 0 and user.keys > 0:
+            response['bonus_game_count'] = user.bonus_game_count
             response['message'] = 'bonus_game_active'
             response['keys'] = user.keys
         else:
+            response['bonus_game_count'] = user.bonus_game_count
+            response['keys'] = user.keys
             response['message'] = 'no_bonus_game'
     except User.DoesNotExist:
         response['message'] = 'no_account'
@@ -140,8 +150,15 @@ def ajax_start_bonus_game(request):
         user = User.objects.get(telegram_id=telegram_id)
         bonus_game_list = []
         bonus_game_list = bonus_game(user)
+        if user.keys < 0:
+            user.keys = 0
+        user.save()
+        user.keys = int(user.keys) - 1
+        user.save()
+        response['bonus_game_count'] = user.bonus_game_count
         response['message'] = 'win'
-        response['winning'] = bonus_game_list
+        response['winning'] = bonus_game_list[0]
+        response['avarage'] = bonus_game_list[1]
         response['keys'] = user.keys
     except User.DoesNotExist:
         response['message'] = 'no_account'

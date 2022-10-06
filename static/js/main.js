@@ -15,7 +15,7 @@ $(document).ready(() => {
             console.log(result)
             if (result.message === 'account_exists') {
                 $('#balance').text(`${result.balance} UAH`)
-                $('.bonus_progress').css('width', `${(12 - result.bonus_game_count) * 11.7}px`);
+                $('.bonus_progress').css('width', `${(result.bonus_game_count) * 11.7}px`);
                 for (let i = 0; i <= result.keys - 1; i++) {
                     keysAll[i].classList.add('__active');
                 }
@@ -25,10 +25,10 @@ $(document).ready(() => {
                 } else if (result.balance < result.last_bet) {
                     $('#bet_amount').val(result.balance)
                 }
-                if (result.bonus_game_count === 0) {
+                if ((result.bonus_game_count === 0 && result.keys > 0)) {
                     bonusGameStart();
                 } else {
-                    $('#bonus_counter').text(`${12 - result.bonus_game_count}/12`);
+                    $('#bonus_counter').text(`${result.bonus_game_count}/12`);
                 }
             } else if (result.message === 'no_account') {
                 $('#balance').text('no_account')
@@ -45,10 +45,12 @@ let lightT = 'url(/static/img/light.gif)';
 
 if (theme) {
     $('#select_chests').css('background-image', theme);
+    $('#bonus_game_start').css('background-image', theme);
 } else {
     localStorage.setItem('data-theme', darkT);
     let theme = localStorage.getItem('data-theme');
     $('#select_chests').css('background-image', theme);
+    $('#bonus_game_start').css('background-image', theme);
 }
 
 
@@ -59,11 +61,13 @@ $(document).on("click", ".swiper_btn", function () {
         localStorage.setItem('data-theme', lightT);
         let newTheme = localStorage.getItem('data-theme');
         $('#select_chests').css('background-image', newTheme);
+        $('#bonus_game_start').css('background-image', newTheme);
         theme = lightT;
     } else if (oldTheme == lightT) {
         localStorage.setItem('data-theme', darkT);
         let newTheme = localStorage.getItem('data-theme');
         $('#select_chests').css('background-image', newTheme);
+        $('#bonus_game_start').css('background-image', newTheme);
         theme = darkT;
     }
 });
@@ -93,9 +97,6 @@ function bonusGameStart() {
     })
 }
 
-//bonusGameStart()
-
-let step = 0;
 
 function keysNull() {
     $.ajax({
@@ -108,7 +109,6 @@ function keysNull() {
 }
 
 function selectBonusChest(choice) {
-        step += 1;
         $("#game_to_start").hide();
         $("#bonus_game_start").show();
         $.ajax({
@@ -121,19 +121,27 @@ function selectBonusChest(choice) {
                 let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
                 let keys = [...document.querySelectorAll('.key2')];
 
-                if (result.keys >= step) {
-                    keys[result.keys - step].classList.remove('__active');
-                }
+
+                keys[result.keys].classList.remove('__active');
 
                 let winBonus = (sunduk, bonus) => {
+                    let chance = (result.winning / result.avarage);
+
                     sunduk.setAttribute('src', chestOpenedWin);
                     setTimeout(() => {
                         bonus.append(`${result.winning} UAH`);
                     }, 1000);
                     sunduk.classList.add('__active');
+                    if (chance == 10 || chance == 1.5) {
+                        bonus.classList.add('__green');
+                    } else if (chance == 0.01 || chance == 0.5) {
+                        bonus.classList.add('__red');
+                    } else if (chance == 1) {
+                        bonus.classList.add('__yellow');
+                    }
                 }
 
-                if (step != result.keys + 1) {
+                if (result.keys != 0) {
                     if (choice === 'left-1') {
                         winBonus(sunduki[0], resultsOfBonus[0]);
                         setTimeout(() => {
@@ -165,11 +173,45 @@ function selectBonusChest(choice) {
                             sunduki[5].setAttribute('src', '/static/img/open_bonus_case.png')
                         }, 1000);
                     }
-                } else if (step == result.keys + 1) {
-                    step -= 1;
+                } else if (result.keys == 0) {
+                    if (choice === 'left-1') {
+                        winBonus(sunduki[0], resultsOfBonus[0]);
+                        setTimeout(() => {
+                            sunduki[0].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
+                    } else if (choice === 'center-1') {
+                        winBonus(sunduki[1], resultsOfBonus[1]);
+                        setTimeout(() => {
+                            sunduki[1].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
+                    } else if (choice === 'right-1') {
+                        winBonus(sunduki[2], resultsOfBonus[2]);
+                        setTimeout(() => {
+                            sunduki[2].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
+                    } else if (choice === 'left-2') {
+                        winBonus(sunduki[3], resultsOfBonus[3]);
+                        setTimeout(() => {
+                            sunduki[3].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
+                    } else if (choice === 'center-2') {
+                        winBonus(sunduki[4], resultsOfBonus[4]);
+                        setTimeout(() => {
+                            sunduki[4].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
+                    } else if (choice === 'right-2') {
+                        winBonus(sunduki[5], resultsOfBonus[5]);
+                        setTimeout(() => {
+                            sunduki[5].setAttribute('src', '/static/img/open_bonus_case.png')
+                        }, 1000);
+                    }
                     let newGameButton = `<div style="display: flex; align-items: center; justify-content: center; width: 100%;"><button class="button_new_game btn_start_game btn_new_game_bonus" onclick="keysNull()">Новая игра</button></div>`
-                    $("#bonus_game_start").append(newGameButton);
+                    setTimeout(() => {
+                        $("#bonus_game_start").append(newGameButton)
+                    }, 1000);
                     $('.bonus_chest').addClass('__active');
+                }  else {
+                    console.log('error')
                 }
             }
         })
@@ -490,7 +532,5 @@ $(document).on("click", ".settings_close", function () {
 
 $(document).on("click", ".swiper_btn", function () {
     $(this).toggleClass('__active');
-    // $('.settings_theme_btn_turner').toggleClass('__active');
-    // $('.deposit_container').toggleClass('__active');
-    // $('.select_chests').toggleClass('__active');
+    $(this).parent().toggleClass('__active');
 });

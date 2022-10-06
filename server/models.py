@@ -139,7 +139,7 @@ class Game(models.Model):
                 self.winning = randomizer(10 * change_roi_of_game())
 
         self.user.bonus_game_count += 1
-        if self.user.bonus_game_count == 13:
+        if self.user.bonus_game_count == 12:
             bonus_game(self.user)
             self.user.bonus_game_count = 0
         self.user.save()
@@ -218,7 +218,7 @@ def bonus_game(user):
         game.winning_amount = round(average_amount * 10)
     elif randomizer(30):
         game.winning_amount = round(average_amount)
-    elif randomizer(51):
+    elif randomizer(29):
         game.winning_amount = round(average_amount * 1.5)
     elif randomizer(50):
         game.winning_amount = round(average_amount * 0.5)
@@ -236,7 +236,7 @@ def bonus_game(user):
     wallet.balance += game.winning_amount
     wallet.save()
 
-    return game.winning_amount
+    return game.winning_amount, average_amount
 
 
 def get_all_game_results():
