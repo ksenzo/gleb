@@ -119,13 +119,13 @@ class Game(models.Model):
                     self.key_win = True
         else:
             if self.user.keys == 0:
-                self.key_win = randomizer(60 * change_roi_of_game())
+                self.key_win = randomizer(40 * change_roi_of_game())
             elif self.user.keys == 1:
-                self.key_win = randomizer(60 * change_roi_of_game())
+                self.key_win = randomizer(50 * change_roi_of_game())
             elif self.user.keys == 2:
-                self.key_win = randomizer(60 * change_roi_of_game())
+                self.key_win = randomizer(30 * change_roi_of_game())
             elif self.user.keys == 3:
-                self.key_win = randomizer(60 * change_roi_of_game())
+                self.key_win = randomizer(30 * change_roi_of_game())
             elif self.user.keys == 4:
                 self.key_win = randomizer(30 * change_roi_of_game())
             elif self.user.keys == 5:
