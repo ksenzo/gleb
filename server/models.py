@@ -128,7 +128,7 @@ class Game(models.Model):
                 self.key_win = randomizer(60 * change_roi_of_game())
             elif self.user.keys == 4:
                 self.key_win = randomizer(30 * change_roi_of_game())
-            elif self.user.keys == 6:
+            elif self.user.keys == 5:
                 self.key_win = randomizer(30 * change_roi_of_game())
 
             if self.amount <= 100:

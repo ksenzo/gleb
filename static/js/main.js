@@ -77,6 +77,7 @@ function bonusGameStart() {
     $('.key').removeClass('__active');
     $('#keys').hide();
     $("#bonus_game_start").show();
+    $('.bonus_row_bonus_game').addClass('__active');
     $.ajax({
         url: '/server/ajax_bonus_game',
         data: {'telegram_id': userId},
