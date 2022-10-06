@@ -988,15 +988,30 @@ body.__noscroll {
     width: 100%;
 }
 
-.key_win {
+.key_win_right {
     background-image: url(/static/img/bonus_key.svg);
     width: 49px;
     background-size: contain;
     height: 49px;
     position: absolute;
     top: 42px;
-    left: 55px;
+    right: 54px;
+    opacity: 0;
     background-repeat: no-repeat;
+    animation: key_win_right 2.5s ease-in-out alternate;
+}
+
+.key_win_left {
+    background-image: url(/static/img/bonus_key.svg);
+    width: 49px;
+    background-size: contain;
+    height: 49px;
+    position: absolute;
+    top: 42px;
+    left: 54px;
+    opacity: 0;
+    background-repeat: no-repeat;
+    animation: key_win_left 2.5s ease-in-out alternate;
 }
 
 .key2 {
@@ -1004,3 +1019,52 @@ body.__noscroll {
     height: 40px;
 }
 
+@keyframes key_win_right {
+    from {
+        opacity: 1;
+        top: 42px;
+        right: 54px;
+        width: 49px;
+        height: 49px;
+    }
+
+    40% {
+        top: 20px;
+        right: 70px;
+        width: 111px;
+        height: 111px;
+    }
+
+    to {
+        top: -242px;
+        right: 130px;
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+    }
+}
+
+@keyframes key_win_left {
+    from {
+        opacity: 1;
+        top: 42px;
+        left: 54px;
+        width: 49px;
+        height: 49px;
+    }
+
+    40% {
+        top: 20px;
+        left: 120px;
+        width: 111px;
+        height: 111px;
+    }
+
+    to {
+        top: -242px;
+        left: 180px;
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+    }
+}

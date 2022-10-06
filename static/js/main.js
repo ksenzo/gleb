@@ -370,11 +370,11 @@ function selectChest(choice) {
                 if (result.key_result === 'key_winning') {
                     if (choice === 'left') {
                         setTimeout(function(){
-                            firstChest.insertAdjacentHTML('beforebegin','<div class="key_win"></div>');
+                            firstChest.insertAdjacentHTML('beforebegin','<div class="key_win_left"></div>');
                         }, 500);
                     } else if (choice === 'right') {
                         setTimeout(function(){
-                            secondChest.insertAdjacentHTML('beforebegin','<div class="key_win"></div>');
+                            secondChest.insertAdjacentHTML('beforebegin','<div class="key_win_right"></div>');
                         }, 500);
                     }
                 }
