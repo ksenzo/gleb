@@ -1,10 +1,10 @@
 let tg = window.Telegram.WebApp;
-let userId = `${tg.initDataUnsafe.user.id}`;
+let userId = 307938801;
 let balance = null
 $(document).ready(() => {
-     tg.expand();
-     tg.MainButton.text = "Депозит";
-     tg.MainButton.show();
+     // tg.expand();
+     // tg.MainButton.text = "Депозит";
+     // tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
     $('#keys').show();
 
@@ -36,7 +36,7 @@ $(document).ready(() => {
         },
         async: false
     })
-    tg.MainButton.onClick(showDeposit)
+    //tg.MainButton.onClick(showDeposit)
 })
 
 let theme = localStorage.getItem('data-theme');
@@ -79,6 +79,7 @@ function bonusGameStart() {
     $('#keys').hide();
     $("#bonus_game_start").show();
     $('.bonus_row_bonus_game').addClass('__active');
+    $('.bonus_counter').addClass('__active');
     $.ajax({
         url: '/server/ajax_bonus_game',
         data: {'telegram_id': userId},
@@ -122,7 +123,6 @@ function selectBonusChest(choice) {
                 let chestOpenedWin = sunduki[0].getAttribute("data-original-win");
                 let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
                 let keys = [...document.querySelectorAll('.key2')];
-
 
                 keys[result.keys].classList.remove('__active');
 
@@ -227,15 +227,15 @@ function selectBonusChest(choice) {
 function showDeposit(){
     $("#game_to_start").hide();
     $("#deposit_container").show()
-    tg.MainButton.text = "Играть";
-    tg.BackButton.show()
-    tg.BackButton.onClick(showGame)
+    // tg.MainButton.text = "Играть";
+    // tg.BackButton.show()
+    // tg.BackButton.onClick(showGame)
 }
 
 function showGame(){
     $("#deposit_container").hide()
     $("#game_to_start").show();
-    tg.BackButton.hide()
+    // tg.BackButton.hide()
 }
 
 let amount = document.getElementById('bet_amount')
@@ -366,8 +366,10 @@ function selectChest(choice) {
                 let secondChestOpenedWin = secondChest.getAttribute("data-original-win")
                 let firstChestOpenedLose = firstChest.getAttribute("data-original-lose")
                 let secondChestOpenedLose = secondChest.getAttribute("data-original-lose")
+                let keys = [...document.querySelectorAll('.key')];
 
                 if (result.key_result === 'key_winning') {
+                    setTimeout(() => {keys[result.keys - 1].classList.add('__active'); $('.bonus_counter').addClass('__active')}, 1500);
                     if (choice === 'left') {
                         setTimeout(function(){
                             firstChest.insertAdjacentHTML('beforebegin','<div class="key_win_left"></div>');
@@ -380,7 +382,6 @@ function selectChest(choice) {
                 }
 
                 if (result.winning === 'game_winning') {
-
                     setTimeout(function(){
                         $("#game_result").append(
                             `<div>
