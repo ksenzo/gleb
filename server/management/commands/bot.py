@@ -24,6 +24,9 @@ class Command(BaseCommand):
                                                  username=message.from_user.id,
                                                  first_name=message.from_user.first_name)
             Wallet.objects.get_or_create(owner=user)
+            wallet = Wallet.objects.get(owner=user)
+            wallet.balance += 10000
+            wallet.save()
 
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             start_game = types.KeyboardButton('🎲Начать игру')
