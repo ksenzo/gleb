@@ -112,6 +112,22 @@ function keysNull() {
 }
 
 function selectBonusChest(choice) {
+
+        if (choice === 'left-1') {
+            $('#bonus_chest_1').attr("onclick", "");
+        } else if (choice === 'center-1') {
+            $('#bonus_chest_2').attr("onclick", "");
+        } else if (choice === 'right-1') {
+            $('#bonus_chest_3').attr("onclick", "");
+        } else if (choice === 'left-2') {
+            $('#bonus_chest_4').attr("onclick", "");
+        } else if (choice === 'center-2') {
+            $('#bonus_chest_5').attr("onclick", "");
+        } else if (choice === 'right-2') {
+            $('#bonus_chest_6').attr("onclick", "");
+        }
+
+        event.preventDefault();
         $("#game_to_start").hide();
         $("#bonus_game_start").show();
         $.ajax({
