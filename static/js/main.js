@@ -360,10 +360,14 @@ function startGame() {
                         }
                     }
                 })
+            } else if (result.message === 'not_enough_balance') {
+                $('.not_money').addClass('__active');
             }
         }
     })
 }
+
+
 
 
 function selectChest(choice) {
@@ -541,6 +545,10 @@ $(document).on("click", "#settings_btn", function () {
     settingsBlock.addClass('__active');
     openSetting.addClass('__active');
     $('body').addClass('__noscroll');
+});
+
+$(document).on("click", ".close_msg", function () {
+    $('.not_money').removeClass('__active');
 });
 
 $(document).on("click", ".settings_close", function () {
