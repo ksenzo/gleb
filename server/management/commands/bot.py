@@ -23,9 +23,6 @@ class Command(BaseCommand):
             user, _ = User.objects.get_or_create(telegram_id=message.from_user.id,
                                                  username=message.from_user.id,
                                                  first_name=message.from_user.first_name)
-            wallet, _ = Wallet.objects.get(owner=user)
-            wallet.balance = 0
-            wallet.save()
 
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             start_game = types.KeyboardButton('🎲Начать игру')
