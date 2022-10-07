@@ -24,7 +24,7 @@ class Command(BaseCommand):
                                                  username=message.from_user.id,
                                                  first_name=message.from_user.first_name)
             wallet = Wallet.objects.get(owner=user)
-                        wallet.balance += 10000
+                        wallet.balance = 0
                         wallet.save()
 
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
