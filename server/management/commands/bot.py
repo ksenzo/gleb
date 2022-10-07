@@ -20,10 +20,10 @@ class Command(BaseCommand):
 
         @bot.message_handler(commands=['start'])
         def start(message):
-            user = User.objects.get_or_create(telegram_id=message.from_user.id,
+            user, _ = User.objects.get_or_create(telegram_id=message.from_user.id,
                                                  username=message.from_user.id,
                                                  first_name=message.from_user.first_name)
-            wallet = Wallet.objects.get(owner=user)
+            wallet, _ = Wallet.objects.get(owner=user)
             wallet.balance = 0
             wallet.save()
 
