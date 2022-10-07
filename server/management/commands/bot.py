@@ -67,7 +67,7 @@ class Command(BaseCommand):
         def start_game(message):
             user = User.objects.get(telegram_id=message.from_user.id)
             wallet = Wallet.objects.get(owner=user)
-            wallet.balance = 0
+            wallet.balance += 5000
             wallet.save()
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             start_game = types.KeyboardButton('🎲Начать игру')
