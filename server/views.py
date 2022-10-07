@@ -22,12 +22,12 @@ def ajax_check_user(request):
             bonus_game_count = 0
         else:
             bonus_game_count = user.bonus_game_count
-        if Game:
+        if Game.objects.filter(user=user).exists():
             user_last_game = Game.objects.filter(user=user).latest('id')
             last_game = user_last_game.amount
+            response['last_bet'] = last_game
         response['message'] = 'account_exists'
         response['user_id'] = telegram_id
-        response['last_bet'] = last_game
         response['balance'] = wallet.balance
         response['bonus_game_count'] = bonus_game_count
         response['keys'] = user.keys
