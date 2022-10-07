@@ -139,7 +139,7 @@ class Game(models.Model):
                 self.winning = randomizer(10 * change_roi_of_game())
 
         self.user.bonus_game_count += 1
-        if self.user.bonus_game_count == 13:
+        if self.user.bonus_game_count == 12:
             bonus_game(self.user)
             self.user.bonus_game_count = 0
         self.user.save()
