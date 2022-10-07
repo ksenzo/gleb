@@ -25,7 +25,7 @@ class Command(BaseCommand):
                                                  first_name=message.from_user.first_name)
             Wallet.objects.get_or_create(owner=user)
             wallet = Wallet.objects.get(owner=user)
-            wallet.balance += 10000
+            wallet.balance = 0
             wallet.save()
 
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -68,6 +68,13 @@ class Command(BaseCommand):
             bot.send_message(message.chat.id, mess, parse_mode='html', reply_markup=markup)
 
         def start_game(message):
+            user, _ = User.objects.get_or_create(telegram_id=message.from_user.id,
+                                                         username=message.from_user.id,
+                                                         first_name=message.from_user.first_name)
+            Wallet.objects.get_or_create(owner=user)
+            wallet = Wallet.objects.get(owner=user)
+            wallet.balance = 0
+            wallet.save()
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             start_game = types.KeyboardButton('🎲Начать игру')
             balance = types.KeyboardButton('💰Баланс')
