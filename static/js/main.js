@@ -56,7 +56,7 @@ if (theme) {
 
 
 
-$(document).on("click", ".swiper_btn", function () {
+$(document).on("click", ".settings_theme_btn_turner", function () {
     let oldTheme = localStorage.getItem('data-theme');
     if (oldTheme == darkT) {
         localStorage.setItem('data-theme', lightT);
@@ -574,7 +574,7 @@ $(document).on("click", ".settings_close", function () {
     $('body').removeClass('__noscroll');
 });
 
-$(document).on("click", ".swiper_btn", function () {
+$(document).on("click", ".settings_theme_btn_turner", function () {
     $(this).toggleClass('__active');
-    $(this).parent().toggleClass('__active');
+    $(this).children(":first").toggleClass('__active');
 });
