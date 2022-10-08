@@ -581,7 +581,7 @@ $(document).on("click", ".settings_theme_btn_turner", function () {
 
 
 $(document).on("click", ".button_double_bet", function () {
-    clickAnim($('.button_double_bet'));
+    clickAnim("$('.button_double_bet')");
 });
 
 function clickAnim(e){
