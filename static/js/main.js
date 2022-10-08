@@ -579,8 +579,9 @@ $(document).on("click", ".settings_theme_btn_turner", function () {
     $(this).children().eq(1).toggleClass('__active');
 });
 
+const buttonDoubleBet = document.querySelector('.button_double_bet');
 
-function clickAnim(e){
+function clickAnim(e) {
     e.classList.add('clicked');
     setTimeout(()=> {
         e.classList.remove('clicked')
@@ -588,5 +589,5 @@ function clickAnim(e){
 }
 
 $(document).on("click", ".button_double_bet", function () {
-    clickAnim("document.querySelector('.button_double_bet')");
+    clickAnim(buttonDoubleBet);
 });
