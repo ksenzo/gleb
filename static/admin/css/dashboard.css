@@ -49,6 +49,11 @@ body{
     background-size: cover;
 }
 
+.select_chest {
+    background-image: url("/static/img/wood_btn.png");
+    background-size: cover;
+}
+
 .select_chests.__active {
     background-image: url("/static/img/light.gif");
 }
