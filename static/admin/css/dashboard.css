@@ -170,12 +170,11 @@ body{
 }
 
 .buttom_plus:active,
-.button_plus:active {
-    transform: scale(.9);
-    transition: all 0.1s ease 0.1s;
+.button_minus:active {
+    transform: scale(.8);
+    transition: all 0.3s ease 0.1s;
 }
 
-.btn_start_game:focus,
 .btn_start_game:active {
     box-shadow: 0px 8px 13px 0px #000000;
     transition: all 0s ease 0s;
