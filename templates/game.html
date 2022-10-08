@@ -114,6 +114,10 @@
                 <img id="chest_1" style="margin-right: 15px; width: 160px;" src="{% static 'img/sunduk_static.webp' %}" data-original-win="{% static 'img/sunduk_full.gif' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}">
             </div>
             <div class="chest_2 sunduk2">
+                <picture>
+                    <source type="image/webp" srcset="{% static 'img/sunduk_static.webp' %}">
+                    <img src="{% static 'img/sunduk_static.png' %}">
+                </picture>
                 <img id="chest_2" style="width: 160px;" src="{% static 'img/sunduk_static.webp' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}" data-original-win="{% static 'img/sunduk_full.gif' %}">
             </div>
         </div>
