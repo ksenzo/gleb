@@ -581,12 +581,12 @@ $(document).on("click", ".settings_theme_btn_turner", function () {
 
 
 function clickAnim(e){
-    e.addClass('clicked');
+    e.classList.add('clicked');
     setTimeout(()=> {
-        e.removeClass('clicked')
+        e.classList.remove('clicked')
     },1000)
 }
 
 $(document).on("click", ".button_double_bet", function () {
-    clickAnim("$('.button_double_bet')");
+    clickAnim("document.querySelector('.button_double_bet')");
 });
