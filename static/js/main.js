@@ -355,8 +355,6 @@ function startGame() {
                                         <div class="choose_sunduk">ВЫБЕРИТЕ СУНДУК</div>
                                     </div>`
                             )
-                            $('#chest_1').attr("onclick", "selectChest('left')")
-                            $('#chest_2').attr("onclick", "selectChest('right')")
                         }
                     }
                 })
