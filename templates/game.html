@@ -23,7 +23,7 @@
     <div class="header__wrap">
         <span class="balance">
             <div class="coin_img">
-                <img src="{% static 'img/money.svg' %}">
+                <img src="{% static 'img/money.png' %}">
             </div>
             <span class="money_balance" id="balance"></span>
         </span>
@@ -37,10 +37,10 @@
                 <div class="key" id="key_6"></div>
             </div>
             <div class="bonus_img">
-                <img src="{% static 'img/bonus.svg' %}">
+                <img src="{% static 'img/bonus.png' %}">
             </div>
             <div class="bonus_img2">
-                <img src="{% static 'img/bonus2.svg' %}">
+                <img src="{% static 'img/bonus2.png' %}">
             </div>
             <div class="bonus_row">
                 <span class="bonus_row_bonus_game">бонусная игра</span>
@@ -49,7 +49,7 @@
             <span id="bonus_counter" class="numbers_bonus" style="z-index: 5"></span>
         </div>
         <div class="settings_btn" id="settings_btn">
-            <img src="{% static 'img/settings.svg' %}">
+            <img src="{% static 'img/settings.png' %}">
         </div>
     </div>
 </div>
@@ -59,26 +59,26 @@
             <div class="settings_header">
                 <h3 class="settings_title">НАСТРОЙКИ</h3>
                 <div class="settings_close">
-                    <img src="{% static 'img/set_close.svg' %}">
+                    <img src="{% static 'img/set_close.png' %}">
                 </div>
             </div>
             <div class="settings_sounds">
                 <div class="settings_name">ЗВУК</div>
                 <div class="settings_music">
                     <div class="settings_sound_music_img">
-                        <img src="{% static 'img/sound_music.svg' %}">
+                        <img src="{% static 'img/sound_music.png' %}">
                     </div>
                     <div class="settings_sound_music_text">ЗВУК И МУЗЫКА</div>
                 </div>
                 <div class="settings_music">
                     <div class="settings_sound_music_img">
-                        <img src="{% static 'img/sound.svg' %}">
+                        <img src="{% static 'img/sound.png' %}">
                     </div>
                     <div class="settings_sound_music_text">ТОЛЬКО ЗВУК</div>
                 </div>
                 <div class="settings_music">
                     <div class="settings_sound_music_img">
-                        <img src="{% static 'img/mute.svg' %}">
+                        <img src="{% static 'img/sound.png' %}">
                     </div>
                     <div class="settings_sound_music_text">БЕЗ ЗВУКА</div>
                 </div>
@@ -88,7 +88,7 @@
                 <div class="settings_theme_btn">
                     <div class="settings_theme_btn_option">ДЕНЬ</div>
                     <div class="settings_theme_btn_turner">
-                        <img src="{% static 'img/moon.svg' %}">
+                        <img src="{% static 'img/moon.png' %}">
                         <div class="swiper_btn"></div>
                         <img src="{% static 'img/sun.svg' %}">
                     </div>
@@ -102,7 +102,7 @@
     <div class="not_money">
         <div class="not_money_wrap">
             <div class="close_msg">
-                <img src="{% static 'img/set_close.svg' %}">
+                <img src="{% static 'img/set_close.png' %}">
             </div>
             <div class="not_money_msg">К несчастью, на балансе недостаточно средств для игры, пожалуйста пополните счет для продолжения</div>
         </div>
@@ -111,14 +111,10 @@
     <div id="select_chests" class="select_chests">
         <div class="sunduki">
             <div class="chest_1 sunduk">
-                <img id="chest_1" style="margin-right: 15px; width: 160px;" src="{% static 'img/sunduk_static.webp' %}" data-original-win="{% static 'img/sunduk_full.gif' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}">
+                <img id="chest_1" style="margin-right: 15px; width: 160px;" src="{% static 'img/sunduk_static.png' %}" data-original-win="{% static 'img/sunduk_full.gif' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}">
             </div>
             <div class="chest_2 sunduk2">
-                <picture>
-                    <source type="image/webp" srcset="{% static 'img/sunduk_static.webp' %}">
-                    <img src="{% static 'img/sunduk_static.png' %}">
-                </picture>
-                <img id="chest_2" style="width: 160px;" src="{% static 'img/sunduk_static.webp' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}" data-original-win="{% static 'img/sunduk_full.gif' %}">
+                <img id="chest_2" style="width: 160px;" src="{% static 'img/sunduk_static.png' %}" data-original-lose="{% static 'img/sunduk_empty.gif' %}" data-original-win="{% static 'img/sunduk_full.gif' %}">
             </div>
         </div>
     </div>

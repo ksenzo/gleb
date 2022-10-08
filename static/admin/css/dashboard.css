@@ -151,7 +151,7 @@ body{
 }
 
 .button_minus{
-    background-image: url('/static/img/minus.webp');
+    background-image: url('/static/img/minus.png');
     background-repeat: no-repeat;
     background-color: #ffffff00;
     width: 58px;
@@ -161,7 +161,7 @@ body{
 }
 
 .button_plus{
-    background-image: url('/static/img/plus.webp');
+    background-image: url('/static/img/plus.png');
     background-repeat: no-repeat;
     background-color: #ffffff00;
     background-size: contain;
@@ -488,7 +488,7 @@ input[type=radio] + label>img {
 
 .chose_bet_size {
 
-    background-image: url("/static/img/main-img.webp");
+    background-image: url("/static/img/main-img.png");
     background-size: cover;
     padding-top: 175px;
     position: relative;
@@ -741,7 +741,7 @@ input[type=radio] + label>img {
 .deposit_amount_container {
     height: 760px;
     transform: translateY(-27px);
-    background-image: url('/static/img/back_main_dep.webp');
+    background-image: url('/static/img/back_main_dep.png');
     background-repeat: no-repeat;
     background-size: contain;
 }
