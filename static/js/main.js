@@ -585,7 +585,7 @@ function clickAnim(e) {
     e.classList.add('clicked');
     setTimeout(()=> {
         e.classList.remove('clicked')
-    },500);
+    },200);
 }
 
 $(document).on("click", ".button_double_bet", function () {
