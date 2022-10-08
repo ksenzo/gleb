@@ -52,6 +52,7 @@ body{
 .choose_sunduk {
     background-image: url("/static/img/wood_btn.png");
     background-size: cover;
+    padding: 36px 48px 60px 47px;
 }
 
 .select_chests.__active {
