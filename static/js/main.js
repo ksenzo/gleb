@@ -112,6 +112,7 @@ function keysNull() {
 }
 
 function selectBonusChest(choice) {
+    $('.bonus_sunduk').attr("onclick", "");
 
         if (choice === 'left-1') {
             $('#bonus_chest_1').attr("onclick", "");
@@ -127,7 +128,6 @@ function selectBonusChest(choice) {
             $('#bonus_chest_6').attr("onclick", "");
         }
 
-        event.preventDefault();
         $("#game_to_start").hide();
         $("#bonus_game_start").show();
         $.ajax({
@@ -228,6 +228,12 @@ function selectBonusChest(choice) {
                         $("#bonus_game_start").append(newGameButton)
                     }, 1000);
                     $('.bonus_chest').addClass('__active');
+                    $('#bonus_chest_1').attr("onclick", "selectBonusChest('left-1')")
+                    $('#bonus_chest_2').attr("onclick", "selectBonusChest('center-1')")
+                    $('#bonus_chest_3').attr("onclick", "selectBonusChest('right-1')")
+                    $('#bonus_chest_4').attr("onclick", "selectBonusChest('left-2')")
+                    $('#bonus_chest_5').attr("onclick", "selectBonusChest('center-2')")
+                    $('#bonus_chest_6').attr("onclick", "selectBonusChest('right-2')")
                 }  else {
                     console.log('error')
                 }
