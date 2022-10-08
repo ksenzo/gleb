@@ -163,22 +163,20 @@ def bonus_game(user):
     keys = user.keys
     game = BonusGame.objects.create(user=user, amount=average_amount)
 
-    match user:
-            case randomizer(1):
-                return game.winning_amount = round(average_amount * 100)
-            case randomizer(19):
-                 return game.winning_amount = round(average_amount * 10)
-            case randomizer(30):
-                return game.winning_amount = round(average_amount)
-            case randomizer(29):
-                return game.winning_amount = round(average_amount * 1.5)
-            case randomizer(29):
-                return game.winning_amount = round(average_amount * 0.5)
-            case randomizer(20):
-                return game.winning_amount = round(average_amount / 10)
-            case _:
-                return game.winning_amount = round(average_amount * 0)
-
+    if randomizer(1):
+        game.winning_amount = round(average_amount * 100)
+    elif randomizer(19):
+        game.winning_amount = round(average_amount * 10)
+    elif randomizer(30):
+        game.winning_amount = round(average_amount)
+    elif randomizer(29):
+        game.winning_amount = round(average_amount * 1.5)
+    elif randomizer(50):
+        game.winning_amount = round(average_amount * 0.5)
+    elif randomizer(20):
+        game.winning_amount = round(average_amount / 10)
+    else:
+        game.winning_amount = round(average_amount * 0)
     game.save()
 
     user = user
