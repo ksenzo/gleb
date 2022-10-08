@@ -397,6 +397,10 @@ input[type=radio] + label>img {
     left: -4px;
 }
 
+.bonus_img2.__active {
+    top: 11px;
+}
+
 .bonus_counter {
     position: relative;
     width: 144px;

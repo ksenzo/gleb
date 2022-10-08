@@ -81,6 +81,7 @@ function bonusGameStart() {
     $('.bonus_row_bonus_game').addClass('__active');
     $('.bonus_img img').attr('src', '/static/img/open_bonus.svg');
     $('.bonus_img').addClass('__active');
+    $('.bonus_img2').addClass('__active');
     $('.bonus_counter').addClass('__active');
     $.ajax({
         url: '/server/ajax_bonus_game',
