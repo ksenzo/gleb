@@ -581,9 +581,9 @@ $(document).on("click", ".settings_theme_btn_turner", function () {
 
 
 function clickAnim(e){
-    e.classList.add('clicked');
+    e.addClass('clicked');
     setTimeout(()=> {
-        e.classList.remove('clicked')
+        e.removeClass('clicked')
     },1000)
 }
 
