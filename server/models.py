@@ -101,8 +101,42 @@ class Game(models.Model):
         wallet.balance -= self.amount
         wallet.save()
 
+        if self.user.new_game_count == 3:
+            self.user.new_user = False
+        if self.user.new_user:
+            self.user.new_game_count += 1
+            if self.amount <= 100:
+                if self.user.new_game_count <= 3:
+                    self.winning = True
+                    self.key_win = True
+            elif 100 < self.amount < 200:
+                if self.user.new_game_count <= 2:
+                    self.winning = True
+                    self.key_win = True
+            elif self.amount >= 200:
+                if self.user.new_game_count <= 1:
+                    self.winning = True
+                    self.key_win = True
+        else:
+            if self.user.keys == 0:
+                self.key_win = randomizer(40 * change_roi_of_game())
+            elif self.user.keys == 1:
+                self.key_win = randomizer(50 * change_roi_of_game())
+            elif self.user.keys == 2:
+                self.key_win = randomizer(30 * change_roi_of_game())
+            elif self.user.keys == 3:
+                self.key_win = randomizer(30 * change_roi_of_game())
+            elif self.user.keys == 4:
+                self.key_win = randomizer(30 * change_roi_of_game())
+            elif self.user.keys == 5:
+                self.key_win = randomizer(30 * change_roi_of_game())
 
-
+            if self.amount <= 100:
+                self.winning = randomizer(30 * change_roi_of_game())
+            elif 500 > self.amount > 100:
+                self.winning = randomizer(20 * change_roi_of_game())
+            elif self.amount >= 500:
+                self.winning = randomizer(10 * change_roi_of_game())
 
         self.user.bonus_game_count += 1
         if self.user.bonus_game_count == 12:
@@ -110,6 +144,57 @@ class Game(models.Model):
             self.user.bonus_game_count = 0
         self.user.save()
         self.save()
+
+
+    # def win_or_lose(self):
+    #     if self.amount <= 100:
+    #         # 70/30
+    #         pass
+    #     elif 500 > self.amount > 100:
+    #         # 80/20
+    #         pass
+    #     elif self.amount >= 500:
+    #         # 90/10
+    #         pass
+
+# Keys
+
+#     def start_key_game(self):
+#         keys = Keys.objects.get(owner=self.user)
+#         keys.balance -= self.amount
+#         keys.save()
+#         if self.user.new_game_count == 3:
+#             self.user.new_user = False
+#         if self.user.new_user:
+#             self.user.new_game_count += 1
+#             if self.amount <= 100:
+#                 if self.user.new_game_count <= 3:
+#                     self.winning = True
+#             elif 100 < self.amount < 200:
+#                 if self.user.new_game_count <= 2:
+#                     self.winning = True
+#             elif self.amount >= 200:
+#                 if self.user.new_game_count <= 1:
+#                     self.winning = True
+#         else:
+#             if self.amount <= 100:
+#                 self.winning = randomizer(30 * change_roi_of_game())
+#             elif 500 > self.amount > 100:
+#                 self.winning = randomizer(20 * change_roi_of_game())
+#             elif self.amount >= 500:
+#                 self.winning = randomizer(10 * change_roi_of_game())
+#
+#         if self.winning:
+#             pass
+#         else:
+#             pass
+#         self.user.bonus_game_count += 1
+#         if self.user.bonus_game_count == 21: #????????
+#             bonus_game(self.user)
+#             self.user.bonus_game_count = 0
+#         self.user.save()
+#         self.save()
+
 
 def reset_keys(user):
     user = user
@@ -127,10 +212,10 @@ def bonus_game(user):
     keys = user.keys
     game = BonusGame.objects.create(user=user, amount=average_amount)
 
-    if randomizer(100):
-        game.winning_amount = round(average_amount * 100)
+    if randomizer(1):
+        game.winning_amount = round(average_amount / 100)
     else:
-        game.winning_amount = round(average_amount)
+        game.winning_amount = round(average_amount / 100)
     game.save()
 
     user = user
