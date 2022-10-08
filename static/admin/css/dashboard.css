@@ -169,16 +169,14 @@ body{
     margin-left: 6px;
 }
 
-.buttom_plus:hover,
-.button_plus:focus,
-.button_minus:focus,
-.button_plus:hover{
+.buttom_plus:active,
+.button_plus:active {
     transform: scale(.9);
     transition: all 0.1s ease 0.1s;
 }
 
 .btn_start_game:focus,
-.btn_start_game:hover{
+.btn_start_game:active {
     box-shadow: 0px 8px 13px 0px #000000;
     transition: all 0s ease 0s;
 }
@@ -224,8 +222,6 @@ body{
 }
 
 
-.button_bet_size:hover,
-.button_bet_size:focus,
 .button_bet_size:active {
     background-color: #ffd284;
     transition: all 0.1s ease 0s;
