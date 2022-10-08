@@ -166,7 +166,7 @@ body{
 
 .clicked {
     transform: scale(.9);
-    transition: all 0.3s ease 0.3s;
+    transition: all 0.1s ease 0.1s;
 }
 
 .btn_start_game:active {
