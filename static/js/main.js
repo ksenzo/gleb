@@ -582,6 +582,7 @@ $(document).on("click", ".settings_theme_btn_turner", function () {
 const buttonDoubleBet = document.querySelector('.button_double_bet');
 const buttonMinus = document.querySelector('.button_minus');
 const buttonPlus = document.querySelector('.button_plus');
+const btnStartGame = document.querySelector('.btn_start_game');
 
 function clickAnim(e) {
     e.classList.add('clicked');
@@ -600,4 +601,8 @@ $(document).on("click", ".button_minus", function () {
 
 $(document).on("click", ".button_plus", function () {
     clickAnim(buttonPlus);
+});
+
+$(document).on("click", ".btn_start_game", function () {
+    clickAnim(btnStartGame);
 });
