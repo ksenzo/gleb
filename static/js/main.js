@@ -576,5 +576,17 @@ $(document).on("click", ".settings_close", function () {
 
 $(document).on("click", ".settings_theme_btn_turner", function () {
     $(this).toggleClass('__active');
-    $(this).children(":first").toggleClass('__active');
+    $(this).children().eq(1).toggleClass('__active');
 });
+
+
+$(document).on("click", ".button_double_bet", function () {
+    clickAnim($(this));
+});
+
+function clickAnim(e){
+    e.classList.add('clicked');
+    setTimeout(()=> {
+        e.classList.remove('clicked')
+    },1000)
+}

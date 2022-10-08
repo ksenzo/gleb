@@ -169,12 +169,7 @@ body{
     margin-left: 6px;
 }
 
-.button_plus:active {
-    transform: scale(.8);
-    transition: all 0.3s ease 0.1s;
-}
-
-.button_minus:active {
+.clicked {
     transform: scale(.8);
     transition: all 0.3s ease 0.1s;
 }
