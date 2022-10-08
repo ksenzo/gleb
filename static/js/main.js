@@ -447,8 +447,6 @@ function selectChest(choice) {
                     }
                 }
 
-
-
                 $('#chest_1').attr("onclick", "")
                 $('#chest_2').attr("onclick", "")
                 var newGameButton = `<div class="new_game_render_wrap">
@@ -468,7 +466,21 @@ function selectChest(choice) {
     })
 }
 
-//selectChest('left');
+let flag = true;
+
+$(document).on("click", "#chest_1", function () {
+    if (flag === true) {
+        flag = false;
+        selectChest('left');
+    }
+})
+
+$(document).on("click", "#chest_2", function () {
+    if (flag === true) {
+        flag = false;
+        selectChest('right');
+    }
+});
 
 function repeatBetGame(amount) {
     $.ajax({
@@ -488,8 +500,6 @@ function repeatBetGame(amount) {
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
                             $('#select_chest').text('Выберите сундук')
-                            $('#chest_1').attr("onclick", "selectChest('left')")
-                            $('#chest_2').attr("onclick", "selectChest('right')")
                         }
                     }
                 })
