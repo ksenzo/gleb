@@ -144,8 +144,7 @@ body{
     height: 72.13px;
 }
 
-.button_double_bet:hover,
-.button_double_bet:focus {
+.button_double_bet:active {
     transform: scale(.95);
     transition: all .1s ease 0s;
 }
