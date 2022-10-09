@@ -1,10 +1,10 @@
-let tg = window.Telegram.WebApp;
-let userId = `${tg.initDataUnsafe.user.id}`;
+//let tg = window.Telegram.WebApp;
+let userId = 5189485031;
 let balance = null
 $(document).ready(() => {
-     tg.expand();
-     tg.MainButton.text = "Депозит";
-     tg.MainButton.show();
+     // tg.expand();
+     // tg.MainButton.text = "Депозит";
+     // tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
     $('#keys').show();
 
@@ -36,7 +36,7 @@ $(document).ready(() => {
         },
         async: false
     })
-    tg.MainButton.onClick(showDeposit)
+    //tg.MainButton.onClick(showDeposit)
 })
 
 let theme = localStorage.getItem('data-theme');
@@ -252,15 +252,15 @@ function selectBonusChest(choice) {
 function showDeposit(){
     $("#game_to_start").hide();
     $("#deposit_container").show()
-    tg.MainButton.text = "Играть";
-    tg.BackButton.show()
-    tg.BackButton.onClick(showGame)
+    // tg.MainButton.text = "Играть";
+    // tg.BackButton.show()
+    // tg.BackButton.onClick(showGame)
 }
 
 function showGame(){
     $("#deposit_container").hide()
     $("#game_to_start").show();
-     tg.BackButton.hide()
+     //tg.BackButton.hide()
 }
 
 let amount = document.getElementById('bet_amount')
@@ -348,8 +348,7 @@ function startGame() {
         data: {'telegram_id': userId, 'bet_amount': amount.value},
         success: (result) => {
             if (result.message === 'bet_amount_ok') {
-                // firstChest = document.querySelector('#chest_1')
-                // secondChest = document.querySelector('#chest_2')
+
                 $.ajax({
                     url: '/server/ajax_start_game',
                     data: {'telegram_id': userId, 'bet_amount': amount.value},
@@ -359,6 +358,8 @@ function startGame() {
                             $("#chest_1").attr("class", "chest");
                             $("#chest_2").attr("class", "chest");
                             $("#chose_bet_size").hide();
+                            $('.select_chests').addClass('__active-game');
+                            $('.chest').addClass('__active');
                             $('#select_chest').append(
                                 `<div class="new_game_render_wrap">
                                         <div class="choose_sunduk">ВЫБЕРИТЕ СУНДУК</div>
