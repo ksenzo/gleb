@@ -8,6 +8,7 @@ $(document).ready(() => {
      tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
     $('#keys').show();
+    $('.user_name').text(userName)
 
     $.ajax({
         url: '/server/ajax_check_user',
@@ -15,7 +16,7 @@ $(document).ready(() => {
         success: (result) => {
             console.log(result)
             if (result.message === 'account_exists') {
-                $('#balance').text(userName)
+                $('#balance').text(`${result.balance} UAH`)
                 $('.bonus_progress').css('width', `${(result.bonus_game_count) * 11.7}px`);
                 for (let i = 0; i <= result.keys - 1; i++) {
                     keysAll[i].classList.add('__active');

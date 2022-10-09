@@ -499,7 +499,7 @@ input[type=radio] + label>img {
 }
 
 .chose_bet_size {
-
+    position: relative;
     background-image: url("/static/img/main-img.png");
     background-size: cover;
     padding-top: 175px;
@@ -1187,3 +1187,36 @@ body.__noscroll {
     top: 10px;
 }
 
+.user_info {
+    position: absolute;
+    top: 81px;
+    left: 33px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 4px solid #2a85a0;
+    margin-bottom: 5px;
+}
+
+.user_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.user_name {
+    font-family: 'Machine [Rus by me]';
+    font-size: 14px;
+    padding: 5px;
+    background: #2a85a0;
+    color: #FFD700;
+    border-radius: 12px;
+    border: 2px solid #2a85a0;
+}
