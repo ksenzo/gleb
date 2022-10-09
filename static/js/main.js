@@ -345,6 +345,7 @@ function doubleBet() {
 }
 
 function startGame() {
+    $('.btn_start_game').attr('onclick', '');
     $.ajax({
         url: '/server/ajax_check_bet_amount',
         data: {'telegram_id': userId, 'bet_amount': amount.value},
@@ -366,6 +367,16 @@ function startGame() {
                             $('#select_chest').append(
                                 `<div class="new_game_render_wrap">
                                         <div class="choose_sunduk">ВЫБЕРИТЕ СУНДУК</div>
+                                        <img class="diamond" id="d1" src="/static/img/d1.svg">
+                                        <img class="diamond" id="d2" src="/static/img/d2.svg">
+                                        <img class="diamond" id="d3" src="/static/img/d2.svg">
+                                        <img class="diamond" id="d4" src="/static/img/d4.svg">
+                                        <img class="diamond" id="d5" src="/static/img/d5.svg">
+                                        <img class="diamond" id="d6" src="/static/img/d6.svg">
+                                        <img class="diamond" id="d7" src="/static/img/d7.svg">
+                                        <img class="diamond" id="d8" src="/static/img/d5.svg">
+                                        <img class="diamond" id="d9" src="/static/img/d6.svg">
+                                        <img class="diamond" id="d10" src="/static/img/d4.svg">
                                     </div>`
                             )
                             $(".chest_1").addClass('active_game_chest1');
@@ -464,6 +475,16 @@ function selectChest(choice) {
                 $('#chest_2').attr("onclick", "")
                 var newGameButton = `<div class="new_game_render_wrap">
                                         <button class="button_new_game btn_start_game" onclick="window.location.reload();">ИГРАТЬ</button>
+                                        <img class="diamond" id="d1" src="/static/img/d1.svg">
+                                        <img class="diamond" id="d2" src="/static/img/d2.svg">
+                                        <img class="diamond" id="d3" src="/static/img/d2.svg">
+                                        <img class="diamond" id="d4" src="/static/img/d4.svg">
+                                        <img class="diamond" id="d5" src="/static/img/d5.svg">
+                                        <img class="diamond" id="d6" src="/static/img/d6.svg">
+                                        <img class="diamond" id="d7" src="/static/img/d7.svg">
+                                        <img class="diamond" id="d8" src="/static/img/d5.svg">
+                                        <img class="diamond" id="d9" src="/static/img/d6.svg">
+                                        <img class="diamond" id="d10" src="/static/img/d4.svg">
                                     </div>`
                 // let repeatOnclick = `repeatBetGame(${winning_amount / 2});`
                 // var repeatBetButton = `<button id="repeatBetButton" class="button_new_game">Повторить<br>ставку</button>`

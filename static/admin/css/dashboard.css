@@ -49,22 +49,12 @@ body{
     background-size: cover;
 }
 
-.choose_sunduk {
-    background-image: url("/static/img/wood_btn.png");
-    background-size: cover;
-    padding: 36px 48px 60px 47px;
-}
-
 .select_chests.__active {
     background-image: url("/static/img/light.gif");
 }
 
 .select_chests.__active-game {
     height: 395px;
-}
-
-.select_chest {
-    height: 50vh;
 }
 
 .chest.__active {
@@ -548,14 +538,17 @@ input[type=radio] + label>img {
 }
 
 .choose_sunduk {
-    font-family: 'Vinque';
-    font-weight: 500;
-    font-size: 22px;
+    font-family: 'Vinque', 'Machine [Rus by me]';
+    font-size: 17px;
     line-height: 52px;
-    transform: translateY(-32px);
+    transform: translateY(-39px);
+    font-weight: 500;
     letter-spacing: 0px;
-    color: #ffe296;
+    color: #000000;
     white-space: nowrap;
+    background-image: url("/static/img/wood_btn.png");
+    background-size: cover;
+    padding: 52px 61px 67px 55px;
 }
 
 .sunduki.__active {
@@ -1226,4 +1219,82 @@ body.__noscroll {
     color: #FFD700;
     border-radius: 12px;
     border: 2px solid #2a85a0;
+}
+
+.select_chest {
+    position: relative;
+}
+
+.new_game_render_wrap {
+    position: relative;
+}
+
+#d1 {
+    position: absolute;
+    top: 7px;
+    transform: rotate(340deg);
+    left: 77px;
+}
+
+.diamond {
+    width: 40px;
+}
+#d2 {
+    position: absolute;
+    transform: rotate(215deg);
+    top: 244px;
+    left: 159px;
+}
+#d3 {
+    position: absolute;
+    top: 6px;
+    transform: rotate(158deg);
+    left: 158px;
+}
+#d4 {
+    position: absolute;
+    top: 85px;
+    right: 10px;
+    transform: rotate(45deg);
+}
+#d5 {
+    position: absolute;
+    top: 51px;
+    left: 9px;
+    width: 78px;
+    transform: rotate(342deg);
+}
+#d6 {
+    position: absolute;
+    top: 8px;
+    left: 229px;
+    transform: rotate(341deg);
+}
+#d7 {
+    position: absolute;
+    top: 19px;
+    right: 48px;
+    transform: rotate(45deg);
+}
+
+#d8 {
+    position: absolute;
+    top: 190px;
+    width: 70px;
+    right: 8px;
+    transform: rotate(45deg);
+}
+
+#d9 {
+    position: absolute;
+    top: 200px;
+    left: 29px;
+    transform: rotate(341deg);
+}
+
+#d10 {
+    position: absolute;
+    top: 240px;
+    left: 79px;
+    transform: rotate(341deg);
 }
