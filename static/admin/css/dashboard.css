@@ -555,6 +555,10 @@ input[type=radio] + label>img {
     white-space: nowrap;
 }
 
+.sunduki.__active {
+    transform: translateY(90px);
+}
+
 .button_new_game::after {
     position: absolute;
     content: '';
