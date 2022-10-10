@@ -1231,9 +1231,10 @@ body.__noscroll {
 
 #d1 {
     position: absolute;
-    top: 7px;
+    top: 160px;
     transform: rotate(340deg);
-    left: 77px;
+    width: 60px;
+    left: 8px;
 }
 
 .diamond {
@@ -1241,40 +1242,46 @@ body.__noscroll {
 }
 #d2 {
     position: absolute;
-    transform: rotate(215deg);
-    top: 244px;
-    left: 159px;
+    transform: rotate(112deg);
+    top: 68px;
+    left: 302px;
 }
 #d3 {
     position: absolute;
-    top: 6px;
+    top: 27px;
     transform: rotate(158deg);
-    left: 158px;
+    left: 112px;
+    width: 56px;
 }
 #d4 {
     position: absolute;
-    top: 85px;
-    right: 10px;
-    transform: rotate(45deg);
+    top: 125px;
+    right: 7px;
+    width: 50px;
+    transform: rotate(103deg);
 }
+
 #d5 {
     position: absolute;
     top: 51px;
     left: 9px;
     width: 78px;
-    transform: rotate(342deg);
+    transform: rotate(49deg);
 }
+
 #d6 {
     position: absolute;
-    top: 8px;
-    left: 229px;
-    transform: rotate(341deg);
+    top: 233px;
+    left: 129px;
+    transform: rotate(111deg);
+    width: 68px;
 }
 #d7 {
     position: absolute;
-    top: 19px;
-    right: 48px;
+    top: 22px;
+    right: 106px;
     transform: rotate(45deg);
+    width: 52px;
 }
 
 #d8 {
@@ -1287,14 +1294,15 @@ body.__noscroll {
 
 #d9 {
     position: absolute;
-    top: 200px;
-    left: 29px;
-    transform: rotate(341deg);
+    top: 236px;
+    left: 36px;
+    transform: rotate(33deg);
+    width: 60px;
 }
 
 #d10 {
     position: absolute;
-    top: 240px;
-    left: 79px;
-    transform: rotate(341deg);
+    top: 242px;
+    left: 234px;
+    transform: rotate(32deg);
 }

@@ -160,6 +160,7 @@ def ajax_start_bonus_game(request):
         response['message'] = 'win'
         response['winning'] = bonus_game_list[0]
         response['avarage'] = bonus_game_list[1]
+        response['percents'] = bonus_game_list[2]
         response['keys'] = user.keys
     except User.DoesNotExist:
         response['message'] = 'no_account'
