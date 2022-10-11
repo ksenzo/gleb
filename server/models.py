@@ -181,8 +181,8 @@ def bonus_game(user):
             game.winning_amount = round(average_amount * 0)
     game.save()
     if keys == 1:
-       dynamic_percents = percents
-       dynamic_factors = factors
+       dynamic_percents = [1, 19, 30, 29, 50, 20]
+       dynamic_factors = [100, 10, 1, 1.5, 0.5, 0.1]
 
     user = user
     user.bonus_game_count = 0
