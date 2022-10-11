@@ -154,11 +154,11 @@ def reset_keys(user):
 
     return user.keys
 
-percents = [1, 19, 30, 29, 50, 20, 100]
-factors = [100, 10, 1, 1.5, 0.5, 0.1, 0]
+percents = [1, 19, 30, 29, 50, 20]
+factors = [100, 10, 1, 1.5, 0.5, 0.1]
 
-dynamic_percents = [1, 19, 30, 29, 50, 20, 100]
-dynamic_factors = [100, 10, 1, 1.5, 0.5, 0.1, 0]
+dynamic_percents = [1, 19, 30, 29, 50, 20]
+dynamic_factors = [100, 10, 1, 1.5, 0.5, 0.1]
 
 def bonus_game(user):
     global dynamic_percents
