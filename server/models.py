@@ -155,9 +155,14 @@ def reset_keys(user):
     return user.keys
 
 percents = [1, 19, 30, 29, 50, 20, 100]
-factors =[100, 10, 1, 1.5, 0.5, 0.1, 0]
+factors = [100, 10, 1, 1.5, 0.5, 0.1, 0]
+
+dynamic_percents = [1, 19, 30, 29, 50, 20, 100]
+dynamic_factors = [100, 10, 1, 1.5, 0.5, 0.1, 0]
 
 def bonus_game(user):
+    global dynamic_percents
+    global dynamic_factors
     user_games = Game.objects.filter(user=user).order_by('-id')[:12]
     game_amount = 0
     for game in user_games:
@@ -166,15 +171,18 @@ def bonus_game(user):
     keys = user.keys
     game = BonusGame.objects.create(user=user, amount=average_amount)
 
-    for idx, x in enumerate(percents):
+    for idx, x in enumerate(dynamic_percents):
         if randomizer(x):
-            game.winning_amount = round(average_amount * factors[idx])
-            del percents[idx]
-            del factors[idx]
+            game.winning_amount = round(average_amount * dynamic_factors[idx])
+            del dynamic_percents[idx]
+            del dynamic_factors[idx]
             break
         else:
             game.winning_amount = round(average_amount * 0)
     game.save()
+    if keys == 1:
+       dynamic_percents = percents
+       dynamic_factors = factors
 
     user = user
     user.bonus_game_count = 0
@@ -184,7 +192,7 @@ def bonus_game(user):
     wallet.balance += game.winning_amount
     wallet.save()
 
-    return game.winning_amount, average_amount, factors
+    return game.winning_amount, average_amount, dynamic_percents
 
 
 def get_all_game_results():
