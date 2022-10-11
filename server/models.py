@@ -192,7 +192,7 @@ def bonus_game(user):
     wallet.balance += game.winning_amount
     wallet.save()
 
-    return game.winning_amount, average_amount, dynamic_percents
+    return game.winning_amount, average_amount, dynamic_factors
 
 
 def get_all_game_results():

@@ -1,14 +1,14 @@
 let tg = window.Telegram.WebApp;
-let userId = `${tg.initDataUnsafe.user.id}`;
-let userName = `${tg.initDataUnsafe.user.username}`;
+let userId = 5189485031;
+//let userName = `${tg.initDataUnsafe.user.username}`;
 let balance = null
 $(document).ready(() => {
-     tg.expand();
-     tg.MainButton.text = "Депозит";
-     tg.MainButton.show();
+     // tg.expand();
+     // tg.MainButton.text = "Депозит";
+     // tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
     $('#keys').show();
-    $('.user_name').text(userName)
+    //$('.user_name').text(userName)
 
     $.ajax({
         url: '/server/ajax_check_user',
@@ -38,7 +38,7 @@ $(document).ready(() => {
         },
         async: false
     })
-    tg.MainButton.onClick(showDeposit)
+    //tg.MainButton.onClick(showDeposit)
 })
 
 let theme = localStorage.getItem('data-theme');
@@ -254,15 +254,15 @@ function selectBonusChest(choice) {
 function showDeposit(){
     $("#game_to_start").hide();
     $("#deposit_container").show()
-    tg.MainButton.text = "Играть";
-    tg.BackButton.show()
-    tg.BackButton.onClick(showGame)
+    // tg.MainButton.text = "Играть";
+    // tg.BackButton.show()
+    // tg.BackButton.onClick(showGame)
 }
 
 function showGame(){
     $("#deposit_container").hide()
     $("#game_to_start").show();
-     tg.BackButton.hide()
+     //tg.BackButton.hide()
 }
 
 let amount = document.getElementById('bet_amount')
