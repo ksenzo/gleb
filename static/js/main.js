@@ -1,5 +1,5 @@
 let tg = window.Telegram.WebApp;
-let userId = 5189485031;
+let userId = 307938801;
 //let userName = `${tg.initDataUnsafe.user.username}`;
 let balance = null
 $(document).ready(() => {
