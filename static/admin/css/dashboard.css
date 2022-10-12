@@ -1306,3 +1306,34 @@ body.__noscroll {
     left: 234px;
     transform: rotate(32deg);
 }
+
+.bonus_game_start_container {
+    position: relative;
+}
+
+.bonus_total {
+    position: absolute;
+    top: 120px;
+    left: 0;
+    z-index: 6;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bonus_total_text {
+    font-family: 'Machine [Rus by me]';
+    -webkit-text-stroke: .5px #ff5400;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 52px;
+    letter-spacing: 0px;
+    background: linear-gradient(180deg, #FFFFFF 49.39%, #FFFF32 84%), linear-gradient(180deg, #FFFFFF 0%, #AEFFFC 100%), linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    white-space: nowrap;
+    filter: drop-shadow( 0px 4px 4px rgba(0, 0, 0, 0.25)) drop-shadow( -1px 1px 10px #ED600A) drop-shadow( -1px 1px 40px #FFFF32);
+}

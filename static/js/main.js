@@ -116,6 +116,9 @@ function keysNull() {
     });
 }
 
+let bonusTotal = 0;
+$('.bonus_total_text').text(`total: ${bonusTotal} UAH`);
+
 function selectBonusChest(choice) {
     $('.bonus_sunduk').attr("onclick", "");
 
@@ -145,7 +148,10 @@ function selectBonusChest(choice) {
                 let chestOpenedLose = sunduki[0].getAttribute("data-original-lose");
                 let keys = [...document.querySelectorAll('.key2')];
 
+                bonusTotal += result.winning;
+
                 keys[result.keys].classList.remove('__active');
+                $('.bonus_total_text').text(`total: ${bonusTotal} UAH`);
 
                 let winBonus = (sunduk, bonus) => {
                     let chance = (result.winning / result.avarage);
