@@ -8,7 +8,7 @@ $(document).ready(() => {
      // tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
     $('#keys').show();
-    //$('.user_name').text(userName)
+    $('.user_name').text('userName')
 
     $.ajax({
         url: '/server/ajax_check_user',
