@@ -14,10 +14,27 @@ class User(AbstractUser):
     def __str__(self):
         return str(self.telegram_id)
 
-    # def not_new_user(self):
-    #     if self.new_game_count > 3:
-    #         self.new_user = False
+class Casino(models.Model):
+    hightVal = models.IntegerField(default=100000)
+    currentBalance = models.IntegerField(default=100000)
+    returnBalance = models.IntegerField(default=0)
 
+    def casinoWin(self, telegram_id):
+        user = User.objects.get(telegram_id=telegram_id)
+        game = Game.objects.filter(user=user).last()
+        if self.currentBalance >= self.hightVal * 2:
+            self.currentBalance = 100000
+            self.returnBalance = 0
+            self.save()
+        self.currentBalance += game.amount
+        self.save()
+
+    def casinoLose(self, telegram_id):
+        user = User.objects.get(telegram_id=telegram_id)
+        game = Game.objects.filter(user=user).last()
+        self.currentBalance -= game.amount * 2
+        self.returnBalance += game.amount * 2
+        self.save()
 
 class Wallet(models.Model):
     CURRENCY_CHOICES = [
@@ -100,6 +117,10 @@ class Game(models.Model):
         wallet = Wallet.objects.get(owner=self.user)
         wallet.balance -= self.amount
         wallet.save()
+        casino = Casino.objects.get_or_create()
+        current_balance = casino[0].currentBalance
+        return_balance = casino[0].returnBalance
+        hight_val = casino[0].hightVal
 
         if self.user.new_game_count == 3:
             self.user.new_user = False
@@ -133,12 +154,15 @@ class Game(models.Model):
             else:
                 pass
 
-            if self.amount <= 100:
-                self.winning = randomizer(30 * change_roi_of_game())
-            elif 500 > self.amount > 100:
-                self.winning = randomizer(20 * change_roi_of_game())
-            else:
-                self.winning = randomizer(10 * change_roi_of_game())
+            if return_balance < hight_val * 0.8:
+                if self.amount <= 100:
+                    self.winning = randomizer(60 * change_roi_of_game())
+                elif 500 > self.amount > 100:
+                    self.winning = randomizer(50 * change_roi_of_game())
+                else:
+                    self.winning = randomizer(50 * change_roi_of_game())
+            elif return_balance >= hight_val * 0.8:
+                self.winning = randomizer(0 * change_roi_of_game())
 
         self.user.bonus_game_count += 1
         if self.user.bonus_game_count == 12:
@@ -153,9 +177,6 @@ def reset_keys(user):
     user.save()
 
     return user.keys
-
-percents = [1, 19, 30, 29, 50, 20]
-factors = [100, 10, 1, 1.5, 0.5, 0.1]
 
 dynamic_percents = [1, 19, 30, 29, 50, 20]
 dynamic_factors = [100, 10, 1, 1.5, 0.5, 0.1]

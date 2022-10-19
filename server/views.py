@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import render
-from .models import User, Wallet, Game, bonus_game, reset_keys
+from .models import User, Wallet, Game, bonus_game, reset_keys, Casino
 from .randomizer import randomizer
 import time
 
@@ -80,7 +80,7 @@ def ajax_start_game(request):
         response['balance'] = Wallet.objects.get(owner=user).balance
     except User.DoesNotExist:
         response['message'] = 'no_account'
-    return JsonResponse(response)
+    return JsonResponse(response, safe=False)
 
 
 def ajax_select_chest(request):
@@ -92,6 +92,7 @@ def ajax_select_chest(request):
         game = Game.objects.filter(user=user).last()
         game.choice = choice
         game.save()
+        casino = Casino.objects.get_or_create()
 
         if game.key_win:
             if user.keys < 6:
@@ -105,15 +106,19 @@ def ajax_select_chest(request):
             response['key_result'] = 'key_lose'
 
         if game.winning:
+            casino[0].casinoLose(telegram_id)
             wallet = Wallet.objects.get(owner=user)
             wallet.balance += game.amount * 2
             wallet.save()
-
+            response['currentBalance'] = casino[0].currentBalance
+            response['returnBalance'] = casino[0].returnBalance
             response['winning'] = 'game_winning'
             response['balance'] = Wallet.objects.get(owner=user).balance
         else:
-
+            casino[0].casinoWin(telegram_id)
             response['winning'] = 'game_loosing'
+            response['returnBalance'] = casino[0].returnBalance
+            response['currentBalance'] = casino[0].currentBalance
             response['balance'] = Wallet.objects.get(owner=user).balance
 
         response['winning_amount'] = game.amount * 2
