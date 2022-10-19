@@ -186,21 +186,43 @@ def bonus_game(user):
     global dynamic_factors
     user_games = Game.objects.filter(user=user).order_by('-id')[:12]
     game_amount = 0
+    casino = Casino.objects.get_or_create()
+    current_balance = casino[0].currentBalance
+    return_balance = casino[0].returnBalance
+    hight_val = casino[0].hightVal
+
     for game in user_games:
         game_amount += game.amount
     average_amount = game_amount/12
     keys = user.keys
     game = BonusGame.objects.create(user=user, amount=average_amount)
 
-    for idx, x in enumerate(dynamic_percents):
-        if randomizer(x):
-            game.winning_amount = round(average_amount * dynamic_factors[idx])
-            del dynamic_percents[idx]
-            del dynamic_factors[idx]
-            break
+    if return_balance < hight_val * 0.8:
+        for idx, x in enumerate(dynamic_percents):
+            if randomizer(x):
+                game.winning_amount = round(average_amount * dynamic_factors[idx])
+                return_balance += round(average_amount * dynamic_factors[idx])
+                current_balance -= round(average_amount * dynamic_factors[idx])
+                del dynamic_percents[idx]
+                del dynamic_factors[idx]
+                casino[0].save()
+                break
+            else:
+                game.winning_amount = round(average_amount * 0)
+        game.save()
+    elif return_balance >= hight_val * 0.8:
+        if randomizer(100):
+            game.winning_amount -= round(average_amount * 0)
         else:
-            game.winning_amount = round(average_amount * 0)
-    game.save()
+            game.winning_amount -= round(average_amount * 0)
+
+        if current_balance >= hight_val * 2:
+           return_balance = 0
+           current_balance = 100000
+           casino[0].save()
+
+        game.save()
+
     if keys == 1:
        dynamic_percents = [1, 19, 30, 29, 50, 20]
        dynamic_factors = [100, 10, 1, 1.5, 0.5, 0.1]
@@ -213,7 +235,7 @@ def bonus_game(user):
     wallet.balance += game.winning_amount
     wallet.save()
 
-    return game.winning_amount, average_amount, dynamic_factors
+    return game.winning_amount, average_amount, dynamic_factors, current_balance, return_balance
 
 
 def get_all_game_results():
