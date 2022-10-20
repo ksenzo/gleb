@@ -8,7 +8,7 @@ $(document).ready(() => {
      // tg.MainButton.show();
     let keysAll = [...document.querySelectorAll('.key')];
     $('#keys').show();
-    $('.user_name').text('success')
+    $('.user_hat_body').text('user_name')
 
     $.ajax({
         url: '/server/ajax_check_user',
@@ -158,7 +158,7 @@ function selectBonusChest(choice) {
 
                     sunduk.setAttribute('src', chestOpenedWin);
                     setTimeout(() => {
-                        bonus.append(`${result.winning} UAH`);
+                        bonus.append(`${result.winning} UAH X${chance}`);
                     }, 1000);
                     sunduk.classList.add('__active');
                     if (chance == 10 || chance == 1.5) {
