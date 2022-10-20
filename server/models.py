@@ -36,6 +36,11 @@ class Casino(models.Model):
         self.returnBalance += game.amount * 2
         self.save()
 
+    def saveCasino(self, return_balance, current_balance):
+        self.currentBalance = current_balance
+        self.returnBalance = return_balance
+        self.save()
+
 class Wallet(models.Model):
     CURRENCY_CHOICES = [
         ('USD', '$ USD'),
@@ -186,40 +191,45 @@ def bonus_game(user):
     global dynamic_factors
     user_games = Game.objects.filter(user=user).order_by('-id')[:12]
     game_amount = 0
-    casino = Casino.objects.get_or_create()
-    current_balance = casino[0].currentBalance
-    return_balance = casino[0].returnBalance
-    hight_val = casino[0].hightVal
+    casino, created = Casino.objects.get_or_create()
+    current_balance = casino.currentBalance
+    return_balance = casino.returnBalance
+    hight_val = casino.hightVal
 
     for game in user_games:
         game_amount += game.amount
     average_amount = game_amount/12
     keys = user.keys
     game = BonusGame.objects.create(user=user, amount=average_amount)
-
+    win_sum = 0
     if return_balance < hight_val * 0.8:
         for idx, x in enumerate(dynamic_percents):
             if randomizer(x):
-                game.winning_amount = round(average_amount * dynamic_factors[idx])
-                return_balance += round(average_amount * dynamic_factors[idx])
-                current_balance -= round(average_amount * dynamic_factors[idx])
-                del dynamic_percents[idx]
-                del dynamic_factors[idx]
-                casino[0].save()
+                win_sum = round(average_amount * dynamic_factors[idx])
+                if win_sum > (hight_val * 0.8) - return_balance:
+                    game.winning_amount = 0
+                    return_balance += game.winning_amount
+                    current_balance -= game.winning_amount
+                elif win_sum <= (hight_val * 0.8) - return_balance:
+                    game.winning_amount = win_sum
+                    current_balance -= game.winning_amount
+                    return_balance += game.winning_amount
+                    del dynamic_percents[idx]
+                    del dynamic_factors[idx]
                 break
             else:
                 game.winning_amount = round(average_amount * 0)
-        game.save()
+
+            game.save()
     elif return_balance >= hight_val * 0.8:
         if randomizer(100):
-            game.winning_amount -= round(average_amount * 0)
+            game.winning_amount = round(average_amount * 0)
         else:
-            game.winning_amount -= round(average_amount * 0)
+            game.winning_amount = round(average_amount * 0)
 
         if current_balance >= hight_val * 2:
            return_balance = 0
            current_balance = 100000
-           casino[0].save()
 
         game.save()
 
@@ -235,7 +245,7 @@ def bonus_game(user):
     wallet.balance += game.winning_amount
     wallet.save()
 
-    return game.winning_amount, average_amount, dynamic_factors, current_balance, return_balance
+    return game.winning_amount, average_amount, dynamic_factors, current_balance, return_balance, win_sum
 
 
 def get_all_game_results():

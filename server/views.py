@@ -154,8 +154,10 @@ def ajax_start_bonus_game(request):
     telegram_id = request.GET.get('telegram_id')
     try:
         user = User.objects.get(telegram_id=telegram_id)
+        casino, created = Casino.objects.get_or_create()
         bonus_game_list = []
         bonus_game_list = bonus_game(user)
+        casino.saveCasino(bonus_game_list[4], bonus_game_list[3])
         if user.keys < 0:
             user.keys = 0
         user.save()
@@ -168,6 +170,7 @@ def ajax_start_bonus_game(request):
         response['perc'] = bonus_game_list[2]
         response['current'] = bonus_game_list[3]
         response['return'] = bonus_game_list[4]
+        response['win_sum'] = bonus_game_list[5]
         response['keys'] = user.keys
     except User.DoesNotExist:
         response['message'] = 'no_account'
